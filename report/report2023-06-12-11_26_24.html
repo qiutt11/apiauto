@@ -1,0 +1,1313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>接口自动化测试报告，测试结果如下：</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+<style type="text/css" media="screen">
+body        { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px; font-size: 120%; }
+table       { font-size: 100%; }
+/* -- heading ---------------------------------------------------------------------- */
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+/* -- report ------------------------------------------------------------------------ */
+#total_row  { font-weight: bold; }
+.passCase   { color: #5cb85c; }
+.failCase   { color: #d9534f; font-weight: bold; }
+.errorCase  { color: #f0ad4e; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+</style>
+
+</head>
+<body >
+<script language="javascript" type="text/javascript">
+output_list = Array();
+/*level 调整增加只显示通过用例的分类 --Findyou
+0:Summary //all hiddenRow
+1:Failed  //pt hiddenRow, ft none
+2:Pass    //pt none, ft hiddenRow
+3:All     //pt none, ft none
+*/
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level == 2 || level == 0 ) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level < 2) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+    }
+    //加入【详细】切换文字变化 --Findyou
+    detail_class=document.getElementsByClassName('detail');
+	//console.log(detail_class.length)
+	if (level == 3) {
+		for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="收起"
+		}
+	}
+	else{
+			for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="详细"
+		}
+	}
+}
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        //ID修改 点 为 下划线 -Findyou
+        tid0 = 't' + cid.substr(1) + '_' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        //修改点击无法收起的BUG，加入【详细】切换文字变化 --Findyou
+        if (toHide) {
+            document.getElementById(tid).className = 'hiddenRow';
+            document.getElementById(cid).innerText = "详细"
+        }
+        else {
+            document.getElementById(tid).className = '';
+            document.getElementById(cid).innerText = "收起"
+        }
+    }
+}
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+</script>
+<div class='heading'>
+<h1 style="font-family: Microsoft YaHei">接口自动化测试报告，测试结果如下：</h1>
+<p class='attribute'><strong>测试人员 : </strong> oms</p>
+<p class='attribute'><strong>开始时间 : </strong> 2023-06-12 11:26:24</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:06.789417</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 25，通过 25，通过率= 100.00%</p>
+
+<p class='description'>用例执行情况：</p>
+</div>
+
+
+<p id='show_detail_line'>
+<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 100.00% }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 0 }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 25 }</a>
+<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 25 }</a>
+</p>
+<table id='result_table' class="table table-condensed table-bordered table-hover">
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 16px;">
+    <td>用例集/测试用例</td>
+    <td>总计</td>
+    <td>通过</td>
+    <td>失败</td>
+    <td>错误</td>
+    <td>详细</td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>testCase.TestCase</td>
+    <td class="text-center">25</td>
+    <td class="text-center">25</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c1',25)" class="detail" id='c1'>详细</a></td>
+</tr>
+
+<tr id='pt1_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_01_业务登录</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_1'>通过</button>
+    <div id='div_pt1_1' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_1'>通过</button>
+    <div id='div_pt1_1' class="collapse in" align="left">
+    <pre>
+    
+pt1_1: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/auth/login；请求方式:post
+最终入参：{
+ "appId": "hcr_oms",
+ "username": "peter.pan",
+ "password": "oms123"
+}
+headers最终入参：{'Content-Type': 'application/json'}
+
+反参：{"code":200,"msg":null,"data":{"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMTA2IiwidXNlcl9rZXkiOiI3YzRkNmQwMi02MzEwLTRjOGQtOGZmMS1jOTk3ODE1NjhmMjIiLCJ1c2VybmFtZSI6InBldGVyLnBhbiJ9.nJrzNRUwJ7n0YSn2U9cuWfmm852kUXjB9rb_0jbMADXQBKLCwIfxiVbrXZAWcRT0qjEI6vBjmrC1J4fJ-YRGpQ","expires_in":40}}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_02_新增招聘需求</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_2'>通过</button>
+    <div id='div_pt1_2' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_2' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_2'>通过</button>
+    <div id='div_pt1_2' class="collapse in" align="left">
+    <pre>
+    
+pt1_2: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/hr/recruitHeadCount/newlyAdded；请求方式:post
+最终入参：{
+ "id": "",
+ "currentHireMode": 1,
+ "recruitmentType": 1,
+ "dimissionUserId": "",
+ "positionName": "咨询岗-顾问",
+ "budgetYear": "2023",
+ "superiorUserId": "潘自辉",
+ "guideUserId": "潘自辉",
+ "needNumber": "10",
+ "workPlaceId": "hcr_bj_jxq",
+ "parentJobSeqId": 3,
+ "jobSeqId": 302,
+ "jobLevelId": 20102,
+ "jobRankId": 212,
+ "jobTitleId": 302001,
+ "branchId": "hcr_bj",
+ "accountingDeptId": "3401",
+ "education": 5,
+ "minSalary": "10000",
+ "maxSalary": "20000",
+ "startTime": "2023-08-15",
+ "completeTime": "2024-08-31",
+ "experience": 0,
+ "expectedEntryTime": "2023-09-24",
+ "responsibility": "1测试岗位职责",
+ "requirements": "测试任职要求",
+ "remark": "111",
+ "internCostType": "",
+ "jobName": "测试招聘需求"
+}
+ 11 case_001
+  22['$..access_token']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMTA2IiwidXNlcl9rZXkiOiI3YzRkNmQwMi02MzEwLTRjOGQtOGZmMS1jOTk3ODE1NjhmMjIiLCJ1c2VybmFtZSI6InBldGVyLnBhbiJ9.nJrzNRUwJ7n0YSn2U9cuWfmm852kUXjB9rb_0jbMADXQBKLCwIfxiVbrXZAWcRT0qjEI6vBjmrC1J4fJ-YRGpQ
+一来字典depend_dict {'access_token': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMTA2IiwidXNlcl9rZXkiOiI3YzRkNmQwMi02MzEwLTRjOGQtOGZmMS1jOTk3ODE1NjhmMjIiLCJ1c2VybmFtZSI6InBldGVyLnBhbiJ9.nJrzNRUwJ7n0YSn2U9cuWfmm852kUXjB9rb_0jbMADXQBKLCwIfxiVbrXZAWcRT0qjEI6vBjmrC1J4fJ-YRGpQ'}
+headers最终入参：{'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMTA2IiwidXNlcl9rZXkiOiI3YzRkNmQwMi02MzEwLTRjOGQtOGZmMS1jOTk3ODE1NjhmMjIiLCJ1c2VybmFtZSI6InBldGVyLnBhbiJ9.nJrzNRUwJ7n0YSn2U9cuWfmm852kUXjB9rb_0jbMADXQBKLCwIfxiVbrXZAWcRT0qjEI6vBjmrC1J4fJ-YRGpQ'}
+
+反参：{"msg":"操作成功","code":200,"data":true}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_3' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_03_获取招聘编号</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_3' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_3'>通过</button>
+    <div id='div_pt1_3' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_3' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_3'>通过</button>
+    <div id='div_pt1_3' class="collapse in" align="left">
+    <pre>
+    
+pt1_3: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/hr/recruitHeadCount/selectAllByLoginUser?pageNum=1&amp;pageSize=10；请求方式:post
+最终入参：{}
+ 11 case_001
+  22['$..access_token']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMTA2IiwidXNlcl9rZXkiOiI3YzRkNmQwMi02MzEwLTRjOGQtOGZmMS1jOTk3ODE1NjhmMjIiLCJ1c2VybmFtZSI6InBldGVyLnBhbiJ9.nJrzNRUwJ7n0YSn2U9cuWfmm852kUXjB9rb_0jbMADXQBKLCwIfxiVbrXZAWcRT0qjEI6vBjmrC1J4fJ-YRGpQ
+一来字典depend_dict {'access_token': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMTA2IiwidXNlcl9rZXkiOiI3YzRkNmQwMi02MzEwLTRjOGQtOGZmMS1jOTk3ODE1NjhmMjIiLCJ1c2VybmFtZSI6InBldGVyLnBhbiJ9.nJrzNRUwJ7n0YSn2U9cuWfmm852kUXjB9rb_0jbMADXQBKLCwIfxiVbrXZAWcRT0qjEI6vBjmrC1J4fJ-YRGpQ'}
+headers最终入参：{'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMTA2IiwidXNlcl9rZXkiOiI3YzRkNmQwMi02MzEwLTRjOGQtOGZmMS1jOTk3ODE1NjhmMjIiLCJ1c2VybmFtZSI6InBldGVyLnBhbiJ9.nJrzNRUwJ7n0YSn2U9cuWfmm852kUXjB9rb_0jbMADXQBKLCwIfxiVbrXZAWcRT0qjEI6vBjmrC1J4fJ-YRGpQ'}
+
+反参：{"total":145,"rows":[{"id":"RHC100000871","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":0,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-12","updateBy":null,"updateTime":null,"remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":null,"processTime":null,"processStatus":0,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":null,"applyStatus":null,"exceedBudgetMoney":null,"exceedBudgetNum":null,"recruitedNum":0,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null},{"id":"RHC100000870","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-12","updateBy":"张楠","updateTime":"2023-06-12","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"7a5e6f3d-08c6-11ee-ab5f-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":"张楠","applyStatus":2,"exceedBudgetMoney":0.00,"exceedBudgetNum":1019,"recruitedNum":1,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null},{"id":"RHC100000854","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"50890fd5-004f-11ee-a9a0-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":"张楠","applyStatus":2,"exceedBudgetMoney":0.00,"exceedBudgetNum":1009,"recruitedNum":1,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null},{"id":"RHC100000853","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"3b7caf23-004e-11ee-a9a0-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":"张楠","applyStatus":3,"exceedBudgetMoney":112089454.00,"exceedBudgetNum":999,"recruitedNum":1,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null},{"id":"RHC100000852","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"9045a8e1-004d-11ee-a9a0-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":"张楠","applyStatus":3,"exceedBudgetMoney":111169454.00,"exceedBudgetNum":989,"recruitedNum":1,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null},{"id":"RHC100000851","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"79890749-0049-11ee-a9a0-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":"张楠","applyStatus":3,"exceedBudgetMoney":108509454.00,"exceedBudgetNum":979,"recruitedNum":0,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null},{"id":"RHC100000850","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"57a1ad27-0049-11ee-a9a0-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":"张楠","applyStatus":3,"exceedBudgetMoney":107537454.00,"exceedBudgetNum":969,"recruitedNum":0,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null},{"id":"RHC100000849","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"b82f31d5-0048-11ee-a9a0-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":"张楠","applyStatus":3,"exceedBudgetMoney":106565454.00,"exceedBudgetNum":959,"recruitedNum":0,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null},{"id":"RHC100000848","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"896afef3-0048-11ee-a9a0-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":"张楠","applyStatus":3,"exceedBudgetMoney":105565454.00,"exceedBudgetNum":949,"recruitedNum":0,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null},{"id":"RHC100000847","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"3d7fe041-0048-11ee-a9a0-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":"张楠","applyStatus":3,"exceedBudgetMoney":104565454.00,"exceedBudgetNum":939,"recruitedNum":0,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null}],"code":200,"msg":"查询成功"}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_4' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_04_招聘需求提交审批</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_4' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_4'>通过</button>
+    <div id='div_pt1_4' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_4' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_4'>通过</button>
+    <div id='div_pt1_4' class="collapse in" align="left">
+    <pre>
+    
+pt1_4: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/hr/recruitHeadCount/startWorkflow?id=RHC100000871；请求方式:get
+最终入参：None
+ 11 case_001
+  22['$..access_token']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMTA2IiwidXNlcl9rZXkiOiI3YzRkNmQwMi02MzEwLTRjOGQtOGZmMS1jOTk3ODE1NjhmMjIiLCJ1c2VybmFtZSI6InBldGVyLnBhbiJ9.nJrzNRUwJ7n0YSn2U9cuWfmm852kUXjB9rb_0jbMADXQBKLCwIfxiVbrXZAWcRT0qjEI6vBjmrC1J4fJ-YRGpQ
+一来字典depend_dict {'access_token': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMTA2IiwidXNlcl9rZXkiOiI3YzRkNmQwMi02MzEwLTRjOGQtOGZmMS1jOTk3ODE1NjhmMjIiLCJ1c2VybmFtZSI6InBldGVyLnBhbiJ9.nJrzNRUwJ7n0YSn2U9cuWfmm852kUXjB9rb_0jbMADXQBKLCwIfxiVbrXZAWcRT0qjEI6vBjmrC1J4fJ-YRGpQ'}
+headers最终入参：{'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMTA2IiwidXNlcl9rZXkiOiI3YzRkNmQwMi02MzEwLTRjOGQtOGZmMS1jOTk3ODE1NjhmMjIiLCJ1c2VybmFtZSI6InBldGVyLnBhbiJ9.nJrzNRUwJ7n0YSn2U9cuWfmm852kUXjB9rb_0jbMADXQBKLCwIfxiVbrXZAWcRT0qjEI6vBjmrC1J4fJ-YRGpQ'}
+反参：{"msg":"操作成功","code":200,"data":true}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_5' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_05_获取招聘审批流程编号</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_5' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_5'>通过</button>
+    <div id='div_pt1_5' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_5' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_5'>通过</button>
+    <div id='div_pt1_5' class="collapse in" align="left">
+    <pre>
+    
+pt1_5: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/hr/recruitHeadCount/selectAllByLoginUser?pageNum=1&amp;pageSize=10；请求方式:post
+最终入参：{}
+ 11 case_001
+  22['$..access_token']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMTA2IiwidXNlcl9rZXkiOiI3YzRkNmQwMi02MzEwLTRjOGQtOGZmMS1jOTk3ODE1NjhmMjIiLCJ1c2VybmFtZSI6InBldGVyLnBhbiJ9.nJrzNRUwJ7n0YSn2U9cuWfmm852kUXjB9rb_0jbMADXQBKLCwIfxiVbrXZAWcRT0qjEI6vBjmrC1J4fJ-YRGpQ
+一来字典depend_dict {'access_token': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMTA2IiwidXNlcl9rZXkiOiI3YzRkNmQwMi02MzEwLTRjOGQtOGZmMS1jOTk3ODE1NjhmMjIiLCJ1c2VybmFtZSI6InBldGVyLnBhbiJ9.nJrzNRUwJ7n0YSn2U9cuWfmm852kUXjB9rb_0jbMADXQBKLCwIfxiVbrXZAWcRT0qjEI6vBjmrC1J4fJ-YRGpQ'}
+headers最终入参：{'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMTA2IiwidXNlcl9rZXkiOiI3YzRkNmQwMi02MzEwLTRjOGQtOGZmMS1jOTk3ODE1NjhmMjIiLCJ1c2VybmFtZSI6InBldGVyLnBhbiJ9.nJrzNRUwJ7n0YSn2U9cuWfmm852kUXjB9rb_0jbMADXQBKLCwIfxiVbrXZAWcRT0qjEI6vBjmrC1J4fJ-YRGpQ'}
+
+反参：{"total":145,"rows":[{"id":"RHC100000871","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-12","updateBy":"潘自辉","updateTime":"2023-06-12","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"ea70454c-08d0-11ee-ab5f-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":null,"applyStatus":2,"exceedBudgetMoney":0.00,"exceedBudgetNum":1029,"recruitedNum":0,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null},{"id":"RHC100000870","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-12","updateBy":"张楠","updateTime":"2023-06-12","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"7a5e6f3d-08c6-11ee-ab5f-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":"张楠","applyStatus":2,"exceedBudgetMoney":0.00,"exceedBudgetNum":1019,"recruitedNum":1,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null},{"id":"RHC100000854","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"50890fd5-004f-11ee-a9a0-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":"张楠","applyStatus":2,"exceedBudgetMoney":0.00,"exceedBudgetNum":1009,"recruitedNum":1,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null},{"id":"RHC100000853","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"3b7caf23-004e-11ee-a9a0-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":"张楠","applyStatus":3,"exceedBudgetMoney":112089454.00,"exceedBudgetNum":999,"recruitedNum":1,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null},{"id":"RHC100000852","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"9045a8e1-004d-11ee-a9a0-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":"张楠","applyStatus":3,"exceedBudgetMoney":111169454.00,"exceedBudgetNum":989,"recruitedNum":1,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null},{"id":"RHC100000851","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"79890749-0049-11ee-a9a0-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":"张楠","applyStatus":3,"exceedBudgetMoney":108509454.00,"exceedBudgetNum":979,"recruitedNum":0,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null},{"id":"RHC100000850","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"57a1ad27-0049-11ee-a9a0-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":"张楠","applyStatus":3,"exceedBudgetMoney":107537454.00,"exceedBudgetNum":969,"recruitedNum":0,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null},{"id":"RHC100000849","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"b82f31d5-0048-11ee-a9a0-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":"张楠","applyStatus":3,"exceedBudgetMoney":106565454.00,"exceedBudgetNum":959,"recruitedNum":0,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null},{"id":"RHC100000848","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"896afef3-0048-11ee-a9a0-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":"张楠","applyStatus":3,"exceedBudgetMoney":105565454.00,"exceedBudgetNum":949,"recruitedNum":0,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null},{"id":"RHC100000847","currentHireMode":1,"jobName":"测试招聘需求","needNumber":10,"accountingDeptId":"3401","status":1,"startTime":"2023-08-15","completeTime":"2024-08-31","workPlaceId":"hcr_bj_jxq","minSalary":10000.00,"maxSalary":20000.00,"education":5,"createBy":"潘自辉","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111","delFlag":0,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"budgetYear":"2023","recruitmentType":1,"dimissionUserId":"","positionName":"咨询岗-顾问","expectedEntryTime":"2023-09-24","superiorUserId":"潘自辉","branchId":"hcr_bj","guideUserId":"潘自辉","internCostType":null,"recruitmentReason":null,"experience":0,"processUser":null,"processId":null,"workflowId":"3d7fe041-0048-11ee-a9a0-005056bae653","processTime":null,"processStatus":1,"responsibility":"1测试岗位职责","requirements":"测试任职要求","excessReason":null,"directorUserId":"张楠","applyStatus":3,"exceedBudgetMoney":104565454.00,"exceedBudgetNum":939,"recruitedNum":0,"fullName":"信息技术部/系统研发部","titleName":"咨询岗","levelName":"I1-2","parentSeqName":"业务序列","seqName":"业务咨询","rankName":"顾问","workPlaceName":"北京酒仙桥","branchName":"慧辰资讯","roleType":null}],"code":200,"msg":"查询成功"}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_6' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_06_招聘审批定时</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_6' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_6'>通过</button>
+    <div id='div_pt1_6' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_6' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_6'>通过</button>
+    <div id='div_pt1_6' class="collapse in" align="left">
+    <pre>
+    
+pt1_6: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8808/xxl-job-admin/jobinfo/trigger?id=120055&amp;executorParam=11&amp;addressList=111；请求方式:post
+ 11 case_005
+  22['$..rows[0].workflowId']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] ea70454c-08d0-11ee-ab5f-005056bae653
+一来字典depend_dict {'workflowId': 'ea70454c-08d0-11ee-ab5f-005056bae653'}
+最终入参：{}
+headers最终入参：{}
+
+反参：&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  	
+	&lt;link rel="icon" href="/xxl-job-admin/static/favicon.ico" /&gt;
+
+	&lt;meta charset="utf-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;!-- Tell the browser to be responsive to screen width --&gt;
+    &lt;meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"&gt;
+    &lt;!-- Bootstrap --&gt;
+    &lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/bower_components/bootstrap/css/bootstrap.min.css"&gt;
+    &lt;!-- Font Awesome --&gt;
+    &lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/bower_components/font-awesome/css/font-awesome.min.css"&gt;
+    &lt;!-- Ionicons --&gt;
+    &lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/bower_components/Ionicons/css/ionicons.min.css"&gt;
+    &lt;!-- Theme style --&gt;
+    &lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/dist/css/AdminLTE.min.css"&gt;
+    &lt;!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. --&gt;
+    &lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/dist/css/skins/_all-skins.min.css"&gt;
+      
+	&lt;!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --&gt;
+    &lt;!-- WARNING: Respond.js doesn't work if you view the page via file:// --&gt;
+    &lt;!--[if lt IE 9]&gt;
+    &lt;script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"&gt;&lt;/script&gt;
+    &lt;![endif]--&gt;
+
+	&lt;!-- pace --&gt;
+	&lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/bower_components/PACE/themes/blue/pace-theme-flash.css"&gt;
+
+
+    &lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/plugins/iCheck/square/blue.css"&gt;
+	&lt;title&gt;任务调度中心&lt;/title&gt;
+&lt;/head&gt;
+&lt;body class="hold-transition login-page"&gt;
+	&lt;div class="login-box"&gt;
+		&lt;div class="login-logo"&gt;
+			&lt;a&gt;&lt;b&gt;XXL&lt;/b&gt;JOB&lt;/a&gt;
+		&lt;/div&gt;
+		&lt;form id="loginForm" method="post" &gt;
+			&lt;div class="login-box-body"&gt;
+				&lt;p class="login-box-msg"&gt;任务调度中心&lt;/p&gt;
+				&lt;div class="form-group has-feedback"&gt;
+	            	&lt;input type="text" name="userName" class="form-control" placeholder="请输入登录账号"  maxlength="18" &gt;
+	            	&lt;span class="glyphicon glyphicon-envelope form-control-feedback"&gt;&lt;/span&gt;
+				&lt;/div&gt;
+	          	&lt;div class="form-group has-feedback"&gt;
+	            	&lt;input type="password" name="password" class="form-control" placeholder="请输入登录密码"  maxlength="18" &gt;
+	            	&lt;span class="glyphicon glyphicon-lock form-control-feedback"&gt;&lt;/span&gt;
+	          	&lt;/div&gt;
+				&lt;div class="row"&gt;
+					&lt;div class="col-xs-8"&gt;
+		              	&lt;div class="checkbox icheck"&gt;
+		                	&lt;label&gt;
+		                  		&lt;input type="checkbox" name="ifRemember" &gt; &amp;nbsp; 记住密码
+		                	&lt;/label&gt;
+						&lt;/div&gt;
+		            &lt;/div&gt;&lt;!-- /.col --&gt;
+		            &lt;div class="col-xs-4"&gt;
+						&lt;button type="submit" class="btn btn-primary btn-block btn-flat"&gt;登录&lt;/button&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/form&gt;
+	&lt;/div&gt;
+	&lt;!-- jQuery --&gt;
+	&lt;script src="/xxl-job-admin/static/adminlte/bower_components/jquery/jquery.min.js"&gt;&lt;/script&gt;
+	&lt;!-- Bootstrap --&gt;
+	&lt;script src="/xxl-job-admin/static/adminlte/bower_components/bootstrap/js/bootstrap.min.js"&gt;&lt;/script&gt;
+	&lt;!-- FastClick --&gt;
+	&lt;script src="/xxl-job-admin/static/adminlte/bower_components/fastclick/fastclick.js"&gt;&lt;/script&gt;
+	&lt;!-- AdminLTE App --&gt;
+	&lt;script src="/xxl-job-admin/static/adminlte/dist/js/adminlte.min.js"&gt;&lt;/script&gt;
+	&lt;!-- jquery.slimscroll --&gt;
+	&lt;script src="/xxl-job-admin/static/adminlte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"&gt;&lt;/script&gt;
+
+    &lt;!-- pace --&gt;
+    &lt;script src="/xxl-job-admin/static/adminlte/bower_components/PACE/pace.min.js"&gt;&lt;/script&gt;
+	&lt;script src="/xxl-job-admin/static/plugins/jquery/jquery.cookie.js"&gt;&lt;/script&gt;
+	&lt;script src="/xxl-job-admin/static/plugins/jquery/jquery.validate.min.js"&gt;&lt;/script&gt;
+
+	&lt;script src="/xxl-job-admin/static/plugins/layer/layer.js"&gt;&lt;/script&gt;
+
+    &lt;script src="/xxl-job-admin/static/js/common.1.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+		var base_url = '/xxl-job-admin';
+        var I18n = {"dataTable_sSortAscending":": 以升序排列此列","jobconf_route_round":"轮询","system_update_fail":"更新失败","jobconf_block_SERIAL_EXECUTION":"单机串行","jobconf_route_lfu":"最不经常使用","dataTable_sLast":"末页","jobinfo_shard_index":"分片序号","jobinfo_field_executorparam":"任务参数","user_add":"新增用户","jobinfo_field_gluetype":"运行模式","job_dashboard_job_num":"任务数量","system_api_error":"接口异常","jobconf_route_last":"最后一个","jobinfo_opt_log":"查询日志","jobinfo_field_id":"任务ID","jobinfo_conf_base":"基础配置","jobinfo_field_executorRouteStrategy":"路由策略","jobinfo_job":"任务","daterangepicker_ranges_last_month":"上个月","jobconf_trigger_exe_regaddress":"执行器-地址列表","system_not_found":"不存在","user_password_update_placeholder":"请输入新密码，为空则不更新密码","jobinfo_shard_total":"分片总数","jobgroup_empty":"不存在有效执行器,请联系管理员","system_update_suc":"更新成功","login_password_lt_4":"登录密码不应低于4位","jobgroup_field_appname_limit":"限制以小写字母开头，由小写字母、数字和中划线组成","daterangepicker_ranges_this_month":"本月","dataTable_sSearch":"搜索","job_dashboard_trigger_num_tip":"调度中心触发的调度次数","user_role":"角色","user_role_admin":"管理员","joblog_handleCode_500":"失败","daterangepicker_custom_starttime":"起始时间","joblog_status_suc":"成功","joblog_handleCode_502":"失败(超时)","jobgroup_field_order_digits":"请输入整数","jobinfo_name":"任务管理","jobinfo_field_alarmemail":"报警邮件","joblog_rolling_log_refresh":"刷新","daterangepicker_custom_endtime":"结束时间","logout_btn":"注销","schedule_type_fix_delay":"固定延迟","jobconf_trigger_type_cron":"Cron触发","change_pwd_field_newpwd":"新密码","jobinfo_field_executorFailRetryCount_placeholder":"失败重试次数，大于零时生效","daterangepicker_custom_monthnames":"一月,二月,三月,四月,五月,六月,七月,八月,九月,十月,十一月,十二月","system_welcome":"欢迎","joblog_clean_log":"日志清理","user_permission":"权限","dataTable_sLoadingRecords":"载入中...","system_opt_edit":"编辑","admin_name":"任务调度中心","job_dashboard_report_loaddata_fail":"调度报表数据加载异常","user_role_normal":"普通用户","login_param_unvalid":"账号或密码错误","jobconf_trigger_type_retry":"失败重试触发","schedule_type_none":"无","login_password_empty":"请输入登录密码","jobconf_beat":"心跳检测","joblog_clean_type_2":"清理三个月之前日志数据","job_dashboard_date_report":"日期分布图","joblog_clean_type_1":"清理一个月之前日志数据","jobgroup_field_appname_length":"AppName长度限制为4~64","joblog_kill_log":"终止任务","user_update_loginuser_limit":"禁止操作当前登录账号","joblog_clean_type_6":"清理一万条以前日志数据","joblog_clean_type_5":"清理一千条以前日志数据","joblog_clean_type_4":"清理一年之前日志数据","joblog_clean_type_3":"清理六个月之前日志数据","jobgroup_field_title_length":"名称长度限制为4~12","jobconf_route_failover":"故障转移","joblog_status":"状态","system_search":"搜索","dataTable_sFirst":"首页","jobgroup_del_limit_1":"拒绝删除, 系统至少保留一个执行器","jobconf_trigger_run":"触发调度","jobinfo_field_update":"更新任务","jobgroup_del_limit_0":"拒绝删除，该执行器使用中","admin_version":"2.3.0","jobconf_route_consistenthash":"一致性HASH","system_ok":"确定","jobconf_trigger_admin_adress":"调度机器","user_username_valid":"限制以小写字母开头，由小写字母、数字组成","system_add_suc":"新增成功","login_username_placeholder":"请输入登录账号","jobinfo_opt_next_time":"下次执行时间","jobconf_trigger_address_empty":"调度失败：执行器地址为空","jobinfo_conf_job":"任务配置","jobconf_monitor_detail":"监控告警明细","jobinfo_field_childJobId":"子任务ID","jobconf_route_lru":"最近最久未使用","jobinfo_field_executorTimeout_placeholder":"任务超时时间，单位秒，大于零时生效","joblog_rolling_log":"执行日志","jobconf_route_busyover":"忙碌转移","system_please_choose":"请选择","job_help_document":"官方文档","jobconf_route_shard":"分片广播","joblog_clean":"清理","jobinfo_glue_jobid_unvalid":"任务ID非法","jobconf_route_first":"第一个","change_pwd_suc_to_logout":"修改密码成功，即将注销登陆","jobinfo_field_jobgroup":"执行器","system_lengh_limit":"长度限制","dataTable_sSortDescending":": 以降序排列此列","joblog_logid_unvalid":"日志ID非法","change_pwd":"修改密码","logout_confirm":"确认注销登录?","dataTable_sInfoFiltered":"(由 _MAX_ 项结果过滤)","daterangepicker_ranges_recent_week":"最近一周","user_username_repeat":"账号重复","daterangepicker_ranges_recent_hour":"最近一小时","jobgroup_field_registryList_unvalid":"机器地址格式非法","joblog_field_triggerTime":"调度时间","jobconf_block_COVER_EARLY":"覆盖之前调度","system_opt":"操作","joblog_field_handleCode":"执行结果","jobinfo_opt_run_tips":"请输入本次执行的机器地址，为空则从执行器获取","joblog_status_running":"进行中","user_password":"密码","job_dashboard_jobgroup_num":"执行器数量","jobconf_trigger_type_manual":"手动触发","login_btn":"登录","jobinfo_field_author":"负责人","joblog_field_executorAddress":"执行器地址","joblog_handleCode_200":"成功","dataTable_sPrevious":"上页","system_permission_limit":"权限拦截","misfire_strategy_do_nothing":"忽略","joblog_kill_log_byman":"人为操作，主动终止","job_dashboard_name":"运行报表","dataTable_sProcessing":"处理中...","schedule_type_cron":"CRON","jobconf_trigger_type":"任务触发类型","system_cancel":"取消","jobinfo_field_executorFailRetryCount":"失败重试次数","daterangepicker_ranges_recent_month":"最近一月","dataTable_sInfoEmpty":"无记录","login_success":"登录成功","system_digits":"整数","job_help":"使用教程","daterangepicker_custom_name":"自定义","system_tips":"系统提示","jobinfo_field_jobdesc":"任务描述","jobconf_monitor_alarm_title":"告警类型","system_opt_del":"删除","system_nav":"导航","jobgroup_field_addressType_limit":"手动录入注册方式，机器地址不可为空","job_dashboard_jobgroup_num_tip":"调度中心在线的执行器机器数量","jobconf_trigger_type_api":"API触发","jobgroup_field_title":"名称","system_fail":"失败","jobgroup_del":"删除执行器","dataTable_sEmptyTable":"表中数据为空","joblog_clean_type_unvalid":"清理类型参数异常","jobconf_monitor":"任务调度中心监控报警","system_opt_fail":"操作失败","job_dashboard_report":"调度报表","jobconf_trigger_child_run":"触发子任务","jobinfo_glue_rollback":"版本回溯","joblog_status_fail":"失败","jobgroup_field_orderrange":"取值范围为1~1000","jobinfo_conf_advanced":"高级配置","system_close":"关闭","joblog_clean_type_9":"清理所有日志数据","joblog_clean_type_8":"清理十万条以前日志数据","system_show":"查看","joblog_clean_type_7":"清理三万条以前日志数据","jobgroup_edit":"编辑执行器","jobinfo_opt_stop":"停止","jobinfo_script_location":"脚本位置","jobgroup_field_registryList_placeholder":"请输入执行器地址列表，多地址逗号分隔","jobinfo_field_childJobId_placeholder":"请输入子任务的任务ID,如存在多个则逗号分隔","joblog_clean_type":"清理方式","joblog_field_triggerMsg":"调度备注","user_update":"更新用户","login_remember_me":"记住密码","system_opt_suc":"操作成功","jobgroup_name":"执行器管理","daterangepicker_custom_daysofweek":"日,一,二,三,四,五,六","jobinfo_glue_remark":"源码备注","logout_success":"注销成功","jobinfo_field_timeout":"任务超时时间","user_manage":"用户管理","jobgroup_list":"执行器列表","login_password_placeholder":"请输入登录密码","jobconf_idleBeat":"空闲检测","system_empty":"无","joblog_rolling_log_failoften":"终止请求Rolling日志,请求失败次数超上限,可刷新页面重新加载日志","jobconf_callback_child_msg1":"{0}/{1} [任务ID={2}], 触发{3}, 触发备注: {4} &lt;br&gt;","joblog_name":"调度日志","dataTable_sNext":"下页","admin_name_full":"分布式任务调度平台XXL-JOB","daterangepicker_ranges_yesterday":"昨日","logout_fail":"注销失败","system_success":"成功","login_param_empty":"账号或密码为空","jobgroup_add":"新增执行器","job_dashboard_trigger_num":"调度次数","jobinfo_opt_registryinfo":"注册节点","jobconf_monitor_alarm_content":"告警内容","joblog_status_all":"全部","jobconf_route_random":"随机","system_unvalid":"非法","jobinfo_opt_start":"启动","login_username_lt_4":"登录账号不应低于4位","joblog_kill_log_limit":"调度失败，无法终止日志","jobconf_callback_child_msg2":"{0}/{1} [任务ID={2}], 触发失败, 触发备注: 任务ID格式错误 &lt;br&gt;","dataTable_sZeroRecords":"没有匹配结果","jobconf_trigger_type_parent":"父任务触发","jobconf_block_DISCARD_LATER":"丢弃后续调度","joblog_field_handleTime":"执行时间","dataTable_sLengthMenu":"每页 _MENU_ 条记录","jobgroup_field_registryList":"机器地址","system_all":"全部","jobinfo_field_alarmemail_placeholder":"请输入报警邮件，多个邮件地址则逗号分隔","jobgroup_field_addressType":"注册方式","joblog_lost_fail":"任务结果丢失，标记失败","job_dashboard_job_num_tip":"调度中心运行的任务数量","system_opt_copy":"复制","schedule_type_fix_rate":"固定速度","jobconf_trigger_exe_regtype":"执行器-注册方式","misfire_strategy_fire_once_now":"立即执行一次","jobgroup_field_addressType_1":"手动录入","jobgroup_field_addressType_0":"自动注册","jobconf_monitor_alarm_type":"调度失败","jobinfo_conf_schedule":"调度配置","joblog_rolling_log_triggerfail":"任务发起调度失败，无法查看执行日志","dataTable_sInfo":"第 _PAGE_ 页 ( 总共 _PAGES_ 页，_TOTAL_ 条记录 )","schedule_type":"调度类型","jobinfo_opt_run":"执行一次","user_username":"账号","jobinfo_field_executorBlockStrategy":"阻塞处理策略","login_username_empty":"请输入登录账号","jobconf_trigger_type_misfire":"调度过期补偿","joblog_field_handleMsg":"执行备注","jobinfo_field_add":"新增","daterangepicker_ranges_today":"今日","system_save":"保存","admin_i18n":"","job_dashboard_rate_report":"成功比例图","joblog_field_triggerCode":"调度结果","system_status":"状态","system_please_input":"请输入","misfire_strategy":"调度过期策略","jobinfo_glue_gluetype_unvalid":"该任务非GLUE模式","system_add_fail":"新增失败","schedule_type_none_limit_start":"当前调度类型禁止启动","login_fail":"登录失败","jobinfo_glue_remark_limit":"源码备注长度限制为4~100"};
+	&lt;/script&gt;
+
+&lt;script src="/xxl-job-admin/static/adminlte/plugins/iCheck/icheck.min.js"&gt;&lt;/script&gt;
+&lt;script src="/xxl-job-admin/static/js/login.1.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_7' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_07_人力登录</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_7' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_7'>通过</button>
+    <div id='div_pt1_7' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_7' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_7'>通过</button>
+    <div id='div_pt1_7' class="collapse in" align="left">
+    <pre>
+    
+pt1_7: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/auth/login；请求方式:post
+最终入参：{
+ "appId": "hcr_oms",
+ "username": "nan.zhang01",
+ "password": "oms123"
+}
+headers最终入参：{'Content-Type': 'application/json'}
+
+反参：{"code":200,"msg":null,"data":{"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ","expires_in":40}}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_8' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_08_分配招聘负责人</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_8' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_8'>通过</button>
+    <div id='div_pt1_8' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_8' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_8'>通过</button>
+    <div id='div_pt1_8' class="collapse in" align="left">
+    <pre>
+    
+pt1_8: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/hr/recruitHeadCount/updateRecruitDirector?userId=%E5%BC%A0%E6%A5%A0&amp;id=RHC100000871；请求方式:get
+最终入参：None
+ 11 case_007
+  22['$..access_token']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ
+一来字典depend_dict {'access_token': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+headers最终入参：{'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+反参：{"msg":"操作成功","code":200,"data":true}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_9' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_09_添加简历</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_9' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_9'>通过</button>
+    <div id='div_pt1_9' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_9' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_9'>通过</button>
+    <div id='div_pt1_9' class="collapse in" align="left">
+    <pre>
+    
+pt1_9: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/hr/talentUserInfo/insertTalentUserMsg；请求方式:post
+ 11 case_003
+  22['$..rows[0].id']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] RHC100000871
+一来字典depend_dict {'id': 'RHC100000871'}
+k数据 titleEntry
+isjavacode []
+最终入参：{"hcrTalentWrite": {"talentUser": {"id": "", "titleEntry": "RHC100000871", "source": 0, "internalRecommender": "\u5f20\u6960", "realName": "\u6d4b\u8bd5", "idCard": "13111", "sex": 1, "phoneWork": "13077622987", "email": "22221@qq.com", "education": 3, "nowAddress": "\u5b58\u50a8", "nowAddressDetail": "\u6d4b\u8bd5", "school": "\u6d4b\u8bd5", "major": "\u6d4b\u8bd5", "birthday": "2001-02-01", "marriage": 0, "children": 0, "registeredResidence": "", "registeredResidenceDetail": "", "accountCharacter": "", "nation": "", "urgentUser": "", "urgentTel": "", "englishLevel": "", "nativePlace": "", "computerLevel": "", "height": "", "weight": "", "bloodType": "", "professionalCertification": "", "speciality": "", "expectedSalary": "", "dateEntry": "", "acquaintanceType": 0, "backInvestigateType": "", "acquaintanceName": "", "acquaintanceTitle": "", "interviewDate": "", "createTime": "", "firstWorkDate": "2021-02-03"}, "talentEducationExperienceList": [{"id": "", "time": [], "school": "", "major": "", "education": "", "academicDegree": "", "witness": "", "witnessPosition": "", "witnessTel": ""}], "talentWorkExperienceList": [{"id": "", "time": [], "companyName": "", "position": "", "salary": "", "academicDegree": "", "witness": "", "witnessPosition": "", "witnessTel": "", "leaveReason": ""}], "talentRelationshipList": [{"id": "", "relationship": "", "name": "", "workUnit": "", "position": "", "nowAddress": "", "phone": ""}], "talentTrainExperienceList": [], "talentResourceDocList": []}}
+ 11 case_007
+  22['$..access_token']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ
+一来字典depend_dict {'access_token': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+headers最终入参：{'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+
+反参：{"msg":"TU100001031","code":200}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_10' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_10_获取简历编号</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_10' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_10'>通过</button>
+    <div id='div_pt1_10' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_10' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_10'>通过</button>
+    <div id='div_pt1_10' class="collapse in" align="left">
+    <pre>
+    
+pt1_10: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/hr/talentUserInfo/listByPermission?pageNum=1&amp;pageSize=10&amp;menuId=306103；请求方式:post
+最终入参：{}
+ 11 case_007
+  22['$..access_token']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ
+一来字典depend_dict {'access_token': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+headers最终入参：{'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+
+反参：{"total":171,"rows":[{"id":"TU100001031","realName":"测试","stageType":2,"archiveStatus":0,"archiveType":null,"hcId":"RHC100000871","directorMemberId":"3266","offerStatus":0,"approvalStatus":0,"jobStatus":0,"memberId":null,"createType":1,"createTime":"2023-06-12 11:26:27","createBy":"张楠","status":1,"link":"TU100001031","source":0,"education":3,"email":"22221@qq.com","sex":1,"phoneWork":"13077622987","talentUser":null,"dateEntry":null,"salaryWages":null,"dimissionUserId":null,"contractStartDate":null,"positionName":"咨询岗-顾问","jobName":null,"fullName":null,"branchName":null,"activateStatus1":null,"activateStatus2":null,"recruitmentType":null,"currentHireMode":1,"branchId":null},{"id":"TU100001030","realName":"测试","stageType":4,"archiveStatus":1,"archiveType":null,"hcId":"RHC100000870","directorMemberId":"3266","offerStatus":1,"approvalStatus":0,"jobStatus":1,"memberId":"3717","createType":1,"createTime":"2023-06-12 10:11:45","createBy":"张楠","status":1,"link":"TU100001030","source":0,"education":3,"email":"22221@qq.com","sex":1,"phoneWork":"13077622987","talentUser":null,"dateEntry":null,"salaryWages":null,"dimissionUserId":null,"contractStartDate":null,"positionName":"咨询岗-顾问","jobName":null,"fullName":null,"branchName":null,"activateStatus1":null,"activateStatus2":null,"recruitmentType":null,"currentHireMode":1,"branchId":null},{"id":"TU100001014","realName":"测试","stageType":4,"archiveStatus":1,"archiveType":null,"hcId":"RHC100000854","directorMemberId":"3266","offerStatus":1,"approvalStatus":0,"jobStatus":1,"memberId":"3716","createType":1,"createTime":"2023-06-01 15:38:35","createBy":"张楠","status":1,"link":"TU100001014","source":0,"education":3,"email":"22221@qq.com","sex":1,"phoneWork":"13077622987","talentUser":null,"dateEntry":null,"salaryWages":null,"dimissionUserId":null,"contractStartDate":null,"positionName":"咨询岗-顾问","jobName":null,"fullName":null,"branchName":null,"activateStatus1":null,"activateStatus2":null,"recruitmentType":null,"currentHireMode":1,"branchId":null},{"id":"TU100001013","realName":"测试","stageType":4,"archiveStatus":1,"archiveType":null,"hcId":"RHC100000853","directorMemberId":"3266","offerStatus":1,"approvalStatus":0,"jobStatus":1,"memberId":"3715","createType":1,"createTime":"2023-06-01 15:30:50","createBy":"张楠","status":1,"link":"TU100001013","source":0,"education":3,"email":"22221@qq.com","sex":1,"phoneWork":"13077622987","talentUser":null,"dateEntry":null,"salaryWages":null,"dimissionUserId":null,"contractStartDate":null,"positionName":"咨询岗-顾问","jobName":null,"fullName":null,"branchName":null,"activateStatus1":null,"activateStatus2":null,"recruitmentType":null,"currentHireMode":1,"branchId":null},{"id":"TU100001012","realName":"测试","stageType":4,"archiveStatus":1,"archiveType":null,"hcId":"RHC100000852","directorMemberId":"3266","offerStatus":1,"approvalStatus":0,"jobStatus":1,"memberId":"3714","createType":1,"createTime":"2023-06-01 15:26:03","createBy":"张楠","status":1,"link":"TU100001012","source":0,"education":3,"email":"22221@qq.com","sex":1,"phoneWork":"13077622987","talentUser":null,"dateEntry":null,"salaryWages":null,"dimissionUserId":null,"contractStartDate":null,"positionName":"咨询岗-顾问","jobName":null,"fullName":null,"branchName":null,"activateStatus1":null,"activateStatus2":null,"recruitmentType":null,"currentHireMode":1,"branchId":null},{"id":"TU100001011","realName":"测试","stageType":4,"archiveStatus":0,"archiveType":null,"hcId":"RHC100000851","directorMemberId":"3266","offerStatus":1,"approvalStatus":0,"jobStatus":0,"memberId":null,"createType":1,"createTime":"2023-06-01 14:56:46","createBy":"张楠","status":1,"link":"TU100001011","source":0,"education":3,"email":"22221@qq.com","sex":1,"phoneWork":"13077622987","talentUser":null,"dateEntry":null,"salaryWages":null,"dimissionUserId":null,"contractStartDate":null,"positionName":"咨询岗-顾问","jobName":null,"fullName":null,"branchName":null,"activateStatus1":null,"activateStatus2":null,"recruitmentType":null,"currentHireMode":1,"branchId":null},{"id":"TU100001010","realName":"测试","stageType":4,"archiveStatus":0,"archiveType":null,"hcId":"RHC100000850","directorMemberId":"3266","offerStatus":1,"approvalStatus":0,"jobStatus":0,"memberId":null,"createType":1,"createTime":"2023-06-01 14:55:50","createBy":"张楠","status":1,"link":"TU100001010","source":0,"education":3,"email":"22221@qq.com","sex":1,"phoneWork":"13077622987","talentUser":null,"dateEntry":null,"salaryWages":null,"dimissionUserId":null,"contractStartDate":null,"positionName":"咨询岗-顾问","jobName":null,"fullName":null,"branchName":null,"activateStatus1":null,"activateStatus2":null,"recruitmentType":null,"currentHireMode":1,"branchId":null},{"id":"TU100001009","realName":"测试","stageType":4,"archiveStatus":0,"archiveType":null,"hcId":"RHC100000849","directorMemberId":"3266","offerStatus":1,"approvalStatus":0,"jobStatus":0,"memberId":null,"createType":1,"createTime":"2023-06-01 14:51:22","createBy":"张楠","status":1,"link":"TU100001009","source":0,"education":3,"email":"22221@qq.com","sex":1,"phoneWork":"13077622987","talentUser":null,"dateEntry":null,"salaryWages":null,"dimissionUserId":null,"contractStartDate":null,"positionName":"咨询岗-顾问","jobName":null,"fullName":null,"branchName":null,"activateStatus1":null,"activateStatus2":null,"recruitmentType":null,"currentHireMode":1,"branchId":null},{"id":"TU100001008","realName":"测试","stageType":4,"archiveStatus":0,"archiveType":null,"hcId":"RHC100000848","directorMemberId":"3266","offerStatus":0,"approvalStatus":0,"jobStatus":0,"memberId":null,"createType":1,"createTime":"2023-06-01 14:50:04","createBy":"张楠","status":1,"link":"TU100001008","source":0,"education":3,"email":"22221@qq.com","sex":1,"phoneWork":"13077622987","talentUser":null,"dateEntry":null,"salaryWages":null,"dimissionUserId":null,"contractStartDate":null,"positionName":"咨询岗-顾问","jobName":null,"fullName":null,"branchName":null,"activateStatus1":null,"activateStatus2":null,"recruitmentType":null,"currentHireMode":1,"branchId":null},{"id":"TU100001007","realName":"测试","stageType":4,"archiveStatus":0,"archiveType":null,"hcId":"RHC100000847","directorMemberId":"3266","offerStatus":0,"approvalStatus":0,"jobStatus":0,"memberId":null,"createType":1,"createTime":"2023-06-01 14:47:57","createBy":"张楠","status":1,"link":"TU100001007","source":0,"education":3,"email":"22221@qq.com","sex":1,"phoneWork":"13077622987","talentUser":null,"dateEntry":null,"salaryWages":null,"dimissionUserId":null,"contractStartDate":null,"positionName":"咨询岗-顾问","jobName":null,"fullName":null,"branchName":null,"activateStatus1":null,"activateStatus2":null,"recruitmentType":null,"currentHireMode":1,"branchId":null}],"code":200,"msg":"查询成功"}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_11' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_11_创建面试</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_11' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_11'>通过</button>
+    <div id='div_pt1_11' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_11' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_11'>通过</button>
+    <div id='div_pt1_11' class="collapse in" align="left">
+    <pre>
+    
+pt1_11: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/hr/interview/insert；请求方式:post
+ 11 case_003
+  22['$..rows[0].id']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] RHC100000871
+ 11 case_010
+  22['$.rows[0].link']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] TU100001031
+一来字典depend_dict {'id': 'RHC100000871', 'link': 'TU100001031'}
+k数据 hcId
+isjavacode []
+k数据 talentId
+isjavacode []
+k数据 realNameID
+isjavacode []
+最终入参：{"interviewUserId": "\u6f58\u81ea\u8f89", "currentHireMode": 1, "hcId": "RHC100000871", "interviewAddress": "", "interviewDate": "", "interviewLength": "", "interviewShape": "", "interviewStage": "", "interviewTime": "", "linkAddress": "", "remark": "", "talentId": "TU100001031", "realName": "\u5f6d\u4e1c\u660c", "sendFlag": "03", "branchId": "hcr_bj", "accountingDeptId": "3401", "allEvaluation": "\u53bb\u53bb\u53bb", "corporateCulture": 1, "educationBackground": 3, "jobAttitude": 4, "professionalism": 4, "thoughtLogic": 4, "professionalKnowledge": 4, "businessCapability": 3, "learningAbility": 3, "leadership": 3, "teamworkAbility": 4, "jobMatching": 4, "status": "01", "interviewStages": [{"interviewDate": "2023-06-29", "interviewTime": "08:30", "interviewShape": "01", "linkAddress": "", "interviewStage": "01", "interviewAddress": "\u5317\u4eac\u5e02\u671d\u9633\u533a\u9152\u4ed9\u6865\u4e2d\u8def18\u53f7\u56fd\u6295\u521b\u610f\u4fe1\u606f\u4ea7\u4e1a\u56ed\u5357\u697c\u4e00\u5c42", "status": "01", "interviewUserId": "\u6f58\u81ea\u8f89", "ifPresent": "00", "state": 1, "dateTimes": null}], "realNameID": "TU100001031", "hrequipartition": "3.20", "allEvaluationHr": "\u53bb\u53bb\u53bb", "equipartition": "3.50"}
+ 11 case_007
+  22['$..access_token']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ
+一来字典depend_dict {'access_token': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+headers最终入参：{'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+
+反参：{"msg":"RI1000411","code":200}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_12' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_12_面试通过</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_12' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_12'>通过</button>
+    <div id='div_pt1_12' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_12' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_12'>通过</button>
+    <div id='div_pt1_12' class="collapse in" align="left">
+    <pre>
+    
+pt1_12: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/hr/talentUserInfo/passOrNot；请求方式:post
+ 11 case_010
+  22['$.rows[0].link']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] TU100001031
+一来字典depend_dict {'link': 'TU100001031'}
+k数据 id
+isjavacode []
+最终入参：{"id": "TU100001031", "stageType": 4}
+ 11 case_007
+  22['$..access_token']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ
+一来字典depend_dict {'access_token': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+headers最终入参：{'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+
+反参：{"msg":"操作成功","code":200}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_13' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_13_创建offer</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_13' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_13'>通过</button>
+    <div id='div_pt1_13' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_13' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_13'>通过</button>
+    <div id='div_pt1_13' class="collapse in" align="left">
+    <pre>
+    
+pt1_13: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/hr/recruitOffer/insertOffer；请求方式:post
+ 11 case_003
+  22['$..rows[0].id']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] RHC100000871
+ 11 case_010
+  22['$.rows[0].link']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] TU100001031
+一来字典depend_dict {'id': 'RHC100000871', 'link': 'TU100001031'}
+k数据 hcId
+isjavacode []
+k数据 talentId
+isjavacode []
+k数据 realNameID
+isjavacode []
+k数据 titleEntry
+isjavacode []
+luo-kang-lun@hcr.com.cn
+最终入参：{"realNameID": "TU100001031", "realName": "\u7f57\u5eb7\u4f26", "talentId": "TU100001031", "accountingDeptId": "3401", "titleEntry": "RHC100000871", "positionName": "\u54a8\u8be2\u5c97-\u987e\u95ee", "currentHireMode": 1, "parentJobSeqId": 3, "jobSeqId": 302, "jobLevelId": 20102, "jobRankId": 212, "jobTitleId": 302001, "superiorUserId": "\u6f58\u81ea\u8f89", "guideUserId": "\u6f58\u81ea\u8f89", "titleLevel": 5, "dateEntry": "2023-07-07", "actualInductionTime": "2023-09-29", "workPlaceId": "hcr_bj_jxq", "contractBranch": "hcr_bj", "salaryWages": "1", "probationType": 1, "probationSalaryNumber": "1", "extraSalaryStatus": 1, "extraOtherSalaryStatus": 0, "commissionStatus": 1, "stockStatus": 0, "optionStatus": 0, "useComputerStatus": 1, "recruitedNeedNum": "0/10", "exceedSalary": 0, "internalRecommenderStatus": 0, "internalRecommender": "", "omsEmail": "luo-kang-lun@hcr.com.cn", "time": ["2023-09-29", "2023-07-07"], "agreementStartTime": "", "agreementEndTime": "", "expectedGraduationTime": "", "remark": "111111", "id": "", "hcId": "RHC100000871", "salaryType": 3}
+ 11 case_007
+  22['$..access_token']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ
+一来字典depend_dict {'access_token': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+headers最终入参：{'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+
+反参：{"msg":"RO100000711","code":200}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_14' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_14_获取offer的id</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_14' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_14'>通过</button>
+    <div id='div_pt1_14' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_14' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_14'>通过</button>
+    <div id='div_pt1_14' class="collapse in" align="left">
+    <pre>
+    
+pt1_14: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/hr/recruitOffer/getListPage?pageNum=1&amp;pageSize=10&amp;menuId=306104；请求方式:post
+最终入参：{"realName":"","budgetYear":"2023","accountingDeptId":"","actualInductionTime":"","processStatus":"","currentHireMode":"","recruitmentType":"","dimissionUserId":"","hcId":"","positionName":""}
+ 11 case_007
+  22['$..access_token']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ
+一来字典depend_dict {'access_token': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+headers最终入参：{'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+
+反参：{"total":69,"rows":[{"id":"RO100000711","talentId":"TU100001031","salaryType":3,"salaryWages":1.00,"probationSalaryNumber":1.00,"dateEntry":"2023-07-07","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000871","accountingDeptId":"3401","realName":"罗康伦","sendEmail":null,"omsEmail":"luo-kang-lun@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":0,"commissionStatus":1,"stockStatus":0,"optionStatus":0,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":0,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-09-29","endOfProbationTime":null,"probationType":1,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-12","updateBy":"","updateTime":null,"remark":"111111","delFlag":0,"processUser":null,"processId":null,"workflowId":null,"processTime":null,"processStatus":0,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":0.00,"offerLink":"TU100001031","phoneWork":"13077622987","hrRemake":null,"reviewer":null,"auditTime":null,"passStatus":null,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null},{"id":"RO100000710","talentId":"TU100001030","salaryType":3,"salaryWages":1.00,"probationSalaryNumber":1.00,"dateEntry":"2023-07-07","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000870","accountingDeptId":"3401","realName":"王涛善","sendEmail":null,"omsEmail":"wang-tao-shan@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":0,"commissionStatus":1,"stockStatus":0,"optionStatus":0,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":1,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-09-29","endOfProbationTime":null,"probationType":1,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-12","updateBy":"张楠","updateTime":"2023-06-12","remark":"111111","delFlag":0,"processUser":null,"processId":null,"workflowId":"7b97b29f-08c6-11ee-ab5f-005056bae653","processTime":null,"processStatus":7,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":0.00,"offerLink":"TU100001030","phoneWork":"13077622987","hrRemake":"1111","reviewer":"张楠","auditTime":"2023-06-12","passStatus":1,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null},{"id":"RO100000693","talentId":"TU100001011","salaryType":3,"salaryWages":1000000.00,"probationSalaryNumber":100000.00,"dateEntry":"2023-06-08","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000851","accountingDeptId":"3401","realName":"测试","sendEmail":null,"omsEmail":"shi.ce01@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":1,"commissionStatus":1,"stockStatus":1,"optionStatus":1,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":0,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-06-21","endOfProbationTime":null,"probationType":3,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-01","updateBy":"","updateTime":null,"remark":null,"delFlag":0,"processUser":null,"processId":null,"workflowId":null,"processTime":null,"processStatus":0,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":0.00,"offerLink":"TU100001011","phoneWork":"13077622987","hrRemake":null,"reviewer":null,"auditTime":null,"passStatus":null,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null},{"id":"RO100000692","talentId":"TU100001014","salaryType":3,"salaryWages":1.00,"probationSalaryNumber":1.00,"dateEntry":"2023-07-07","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000854","accountingDeptId":"3401","realName":"钟顺","sendEmail":null,"omsEmail":"zhong-shun@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":0,"commissionStatus":1,"stockStatus":0,"optionStatus":0,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":1,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-09-29","endOfProbationTime":null,"probationType":1,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111111","delFlag":0,"processUser":null,"processId":null,"workflowId":"51416367-004f-11ee-a9a0-005056bae653","processTime":null,"processStatus":7,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":0.00,"offerLink":"TU100001014","phoneWork":"13077622987","hrRemake":"1111","reviewer":"张楠","auditTime":"2023-06-01","passStatus":1,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null},{"id":"RO100000690","talentId":"TU100001013","salaryType":3,"salaryWages":1.00,"probationSalaryNumber":1.00,"dateEntry":"2023-07-07","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000853","accountingDeptId":"3401","realName":"陈祥","sendEmail":null,"omsEmail":"chen-xiang@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":0,"commissionStatus":1,"stockStatus":0,"optionStatus":0,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":1,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-09-29","endOfProbationTime":null,"probationType":1,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111111","delFlag":0,"processUser":null,"processId":null,"workflowId":null,"processTime":null,"processStatus":7,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":0.00,"offerLink":"TU100001013","phoneWork":"13077622987","hrRemake":"1111","reviewer":"张楠","auditTime":"2023-06-01","passStatus":1,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null},{"id":"RO100000687","talentId":"TU100001012","salaryType":3,"salaryWages":12000.00,"probationSalaryNumber":12000.00,"dateEntry":"2023-07-07","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000852","accountingDeptId":"3401","realName":"周志坚","sendEmail":null,"omsEmail":"zhou-zhi-jian@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":0,"commissionStatus":1,"stockStatus":0,"optionStatus":0,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":1,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-09-29","endOfProbationTime":null,"probationType":1,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111111","delFlag":0,"processUser":null,"processId":null,"workflowId":null,"processTime":null,"processStatus":7,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":31933454.00,"offerLink":"TU100001012","phoneWork":"13077622987","hrRemake":"1111","reviewer":"张楠","auditTime":"2023-06-01","passStatus":1,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null},{"id":"RO100000685","talentId":"TU100001011","salaryType":3,"salaryWages":12000.00,"probationSalaryNumber":12000.00,"dateEntry":"2023-07-07","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000851","accountingDeptId":"3401","realName":"芦生","sendEmail":null,"omsEmail":"lu-sheng@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":0,"commissionStatus":1,"stockStatus":0,"optionStatus":0,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":1,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-09-29","endOfProbationTime":null,"probationType":1,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111111","delFlag":0,"processUser":null,"processId":null,"workflowId":null,"processTime":null,"processStatus":4,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":31933454.00,"offerLink":"TU100001011","phoneWork":"13077622987","hrRemake":"1111","reviewer":"张楠","auditTime":"2023-06-01","passStatus":1,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null},{"id":"RO100000684","talentId":"TU100001010","salaryType":3,"salaryWages":12000.00,"probationSalaryNumber":12000.00,"dateEntry":"2023-07-07","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000850","accountingDeptId":"3401","realName":"刘兴峰","sendEmail":null,"omsEmail":"liu xing feng@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":0,"commissionStatus":1,"stockStatus":0,"optionStatus":0,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":1,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-09-29","endOfProbationTime":null,"probationType":1,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111111","delFlag":0,"processUser":null,"processId":null,"workflowId":null,"processTime":null,"processStatus":4,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":31933454.00,"offerLink":"TU100001010","phoneWork":"13077622987","hrRemake":"1111","reviewer":"张楠","auditTime":"2023-06-01","passStatus":1,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null},{"id":"RO100000683","talentId":"TU100001009","salaryType":3,"salaryWages":12000.00,"probationSalaryNumber":12000.00,"dateEntry":"2023-07-07","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000849","accountingDeptId":"3401","realName":"蒋茂","sendEmail":null,"omsEmail":"jiang mao@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":0,"commissionStatus":1,"stockStatus":0,"optionStatus":0,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":1,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-09-29","endOfProbationTime":null,"probationType":1,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111111","delFlag":0,"processUser":null,"processId":null,"workflowId":null,"processTime":null,"processStatus":4,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":31933454.00,"offerLink":"TU100001009","phoneWork":"13077622987","hrRemake":"1111","reviewer":"张楠","auditTime":"2023-06-01","passStatus":1,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null},{"id":"RO100000682","talentId":"TU100001004","salaryType":3,"salaryWages":12000.00,"probationSalaryNumber":12000.00,"dateEntry":"2023-07-07","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000844","accountingDeptId":"3401","realName":"王乐天","sendEmail":null,"omsEmail":"shi.ce1@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":0,"commissionStatus":1,"stockStatus":0,"optionStatus":0,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":1,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-09-29","endOfProbationTime":null,"probationType":1,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111111","delFlag":0,"processUser":null,"processId":null,"workflowId":null,"processTime":null,"processStatus":4,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":31933454.00,"offerLink":"TU100001004","phoneWork":"13077622987","hrRemake":"1111","reviewer":"张楠","auditTime":"2023-06-01","passStatus":1,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null}],"code":200,"msg":"查询成功"}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_15' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_15_offer提交审批</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_15' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_15'>通过</button>
+    <div id='div_pt1_15' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_15' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_15'>通过</button>
+    <div id='div_pt1_15' class="collapse in" align="left">
+    <pre>
+    
+pt1_15: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/hr/recruitOffer/startWorkflow?id=RO100000711；请求方式:get
+最终入参：None
+ 11 case_007
+  22['$..access_token']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ
+一来字典depend_dict {'access_token': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+headers最终入参：{'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+反参：{"msg":"操作成功","code":200}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_16' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_16_获取offer的workflowid</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_16' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_16'>通过</button>
+    <div id='div_pt1_16' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_16' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_16'>通过</button>
+    <div id='div_pt1_16' class="collapse in" align="left">
+    <pre>
+    
+pt1_16: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/hr/recruitOffer/getListPage?pageNum=1&amp;pageSize=10&amp;menuId=306104；请求方式:post
+最终入参：{"realName":"","budgetYear":"2023","accountingDeptId":"","actualInductionTime":"","processStatus":"","currentHireMode":"","recruitmentType":"","dimissionUserId":"","hcId":"","positionName":""}
+ 11 case_007
+  22['$..access_token']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ
+一来字典depend_dict {'access_token': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+headers最终入参：{'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+
+反参：{"total":69,"rows":[{"id":"RO100000711","talentId":"TU100001031","salaryType":3,"salaryWages":1.00,"probationSalaryNumber":1.00,"dateEntry":"2023-07-07","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000871","accountingDeptId":"3401","realName":"罗康伦","sendEmail":null,"omsEmail":"luo-kang-lun@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":0,"commissionStatus":1,"stockStatus":0,"optionStatus":0,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":0,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-09-29","endOfProbationTime":null,"probationType":1,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-12","updateBy":"张楠","updateTime":"2023-06-12","remark":"111111","delFlag":0,"processUser":null,"processId":null,"workflowId":"eb3039fe-08d0-11ee-ab5f-005056bae653","processTime":null,"processStatus":1,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":0.00,"offerLink":"TU100001031","phoneWork":"13077622987","hrRemake":null,"reviewer":null,"auditTime":null,"passStatus":null,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null},{"id":"RO100000710","talentId":"TU100001030","salaryType":3,"salaryWages":1.00,"probationSalaryNumber":1.00,"dateEntry":"2023-07-07","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000870","accountingDeptId":"3401","realName":"王涛善","sendEmail":null,"omsEmail":"wang-tao-shan@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":0,"commissionStatus":1,"stockStatus":0,"optionStatus":0,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":1,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-09-29","endOfProbationTime":null,"probationType":1,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-12","updateBy":"张楠","updateTime":"2023-06-12","remark":"111111","delFlag":0,"processUser":null,"processId":null,"workflowId":"7b97b29f-08c6-11ee-ab5f-005056bae653","processTime":null,"processStatus":7,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":0.00,"offerLink":"TU100001030","phoneWork":"13077622987","hrRemake":"1111","reviewer":"张楠","auditTime":"2023-06-12","passStatus":1,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null},{"id":"RO100000693","talentId":"TU100001011","salaryType":3,"salaryWages":1000000.00,"probationSalaryNumber":100000.00,"dateEntry":"2023-06-08","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000851","accountingDeptId":"3401","realName":"测试","sendEmail":null,"omsEmail":"shi.ce01@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":1,"commissionStatus":1,"stockStatus":1,"optionStatus":1,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":0,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-06-21","endOfProbationTime":null,"probationType":3,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-01","updateBy":"","updateTime":null,"remark":null,"delFlag":0,"processUser":null,"processId":null,"workflowId":null,"processTime":null,"processStatus":0,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":0.00,"offerLink":"TU100001011","phoneWork":"13077622987","hrRemake":null,"reviewer":null,"auditTime":null,"passStatus":null,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null},{"id":"RO100000692","talentId":"TU100001014","salaryType":3,"salaryWages":1.00,"probationSalaryNumber":1.00,"dateEntry":"2023-07-07","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000854","accountingDeptId":"3401","realName":"钟顺","sendEmail":null,"omsEmail":"zhong-shun@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":0,"commissionStatus":1,"stockStatus":0,"optionStatus":0,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":1,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-09-29","endOfProbationTime":null,"probationType":1,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111111","delFlag":0,"processUser":null,"processId":null,"workflowId":"51416367-004f-11ee-a9a0-005056bae653","processTime":null,"processStatus":7,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":0.00,"offerLink":"TU100001014","phoneWork":"13077622987","hrRemake":"1111","reviewer":"张楠","auditTime":"2023-06-01","passStatus":1,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null},{"id":"RO100000690","talentId":"TU100001013","salaryType":3,"salaryWages":1.00,"probationSalaryNumber":1.00,"dateEntry":"2023-07-07","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000853","accountingDeptId":"3401","realName":"陈祥","sendEmail":null,"omsEmail":"chen-xiang@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":0,"commissionStatus":1,"stockStatus":0,"optionStatus":0,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":1,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-09-29","endOfProbationTime":null,"probationType":1,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111111","delFlag":0,"processUser":null,"processId":null,"workflowId":null,"processTime":null,"processStatus":7,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":0.00,"offerLink":"TU100001013","phoneWork":"13077622987","hrRemake":"1111","reviewer":"张楠","auditTime":"2023-06-01","passStatus":1,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null},{"id":"RO100000687","talentId":"TU100001012","salaryType":3,"salaryWages":12000.00,"probationSalaryNumber":12000.00,"dateEntry":"2023-07-07","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000852","accountingDeptId":"3401","realName":"周志坚","sendEmail":null,"omsEmail":"zhou-zhi-jian@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":0,"commissionStatus":1,"stockStatus":0,"optionStatus":0,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":1,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-09-29","endOfProbationTime":null,"probationType":1,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111111","delFlag":0,"processUser":null,"processId":null,"workflowId":null,"processTime":null,"processStatus":7,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":31933454.00,"offerLink":"TU100001012","phoneWork":"13077622987","hrRemake":"1111","reviewer":"张楠","auditTime":"2023-06-01","passStatus":1,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null},{"id":"RO100000685","talentId":"TU100001011","salaryType":3,"salaryWages":12000.00,"probationSalaryNumber":12000.00,"dateEntry":"2023-07-07","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000851","accountingDeptId":"3401","realName":"芦生","sendEmail":null,"omsEmail":"lu-sheng@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":0,"commissionStatus":1,"stockStatus":0,"optionStatus":0,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":1,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-09-29","endOfProbationTime":null,"probationType":1,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111111","delFlag":0,"processUser":null,"processId":null,"workflowId":null,"processTime":null,"processStatus":4,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":31933454.00,"offerLink":"TU100001011","phoneWork":"13077622987","hrRemake":"1111","reviewer":"张楠","auditTime":"2023-06-01","passStatus":1,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null},{"id":"RO100000684","talentId":"TU100001010","salaryType":3,"salaryWages":12000.00,"probationSalaryNumber":12000.00,"dateEntry":"2023-07-07","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000850","accountingDeptId":"3401","realName":"刘兴峰","sendEmail":null,"omsEmail":"liu xing feng@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":0,"commissionStatus":1,"stockStatus":0,"optionStatus":0,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":1,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-09-29","endOfProbationTime":null,"probationType":1,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111111","delFlag":0,"processUser":null,"processId":null,"workflowId":null,"processTime":null,"processStatus":4,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":31933454.00,"offerLink":"TU100001010","phoneWork":"13077622987","hrRemake":"1111","reviewer":"张楠","auditTime":"2023-06-01","passStatus":1,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null},{"id":"RO100000683","talentId":"TU100001009","salaryType":3,"salaryWages":12000.00,"probationSalaryNumber":12000.00,"dateEntry":"2023-07-07","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000849","accountingDeptId":"3401","realName":"蒋茂","sendEmail":null,"omsEmail":"jiang mao@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":0,"commissionStatus":1,"stockStatus":0,"optionStatus":0,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":1,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-09-29","endOfProbationTime":null,"probationType":1,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111111","delFlag":0,"processUser":null,"processId":null,"workflowId":null,"processTime":null,"processStatus":4,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":31933454.00,"offerLink":"TU100001009","phoneWork":"13077622987","hrRemake":"1111","reviewer":"张楠","auditTime":"2023-06-01","passStatus":1,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null},{"id":"RO100000682","talentId":"TU100001004","salaryType":3,"salaryWages":12000.00,"probationSalaryNumber":12000.00,"dateEntry":"2023-07-07","workPlaceId":"hcr_bj_jxq","contactUserId":null,"hcId":"RHC100000844","accountingDeptId":"3401","realName":"王乐天","sendEmail":null,"omsEmail":"shi.ce1@hcr.com.cn","sex":1,"jobTitleId":302001,"jobLevelId":20102,"jobSeqId":302,"jobRankId":212,"parentJobSeqId":3,"extraSalaryStatus":1,"extraOtherSalaryStatus":0,"commissionStatus":1,"stockStatus":0,"optionStatus":0,"guideUserId":"潘自辉","superiorUserId":"潘自辉","titleLevel":5,"internalRecommenderStatus":0,"internalRecommender":null,"useComputerStatus":1,"contractBranch":"hcr_bj","sendOffer":1,"expectedGraduationTime":null,"agreementStartTime":null,"agreementEndTime":null,"actualInductionTime":"2023-09-29","endOfProbationTime":null,"probationType":1,"currentHireMode":1,"education":5,"createBy":"张楠","createTime":"2023-06-01","updateBy":"张楠","updateTime":"2023-06-01","remark":"111111","delFlag":0,"processUser":null,"processId":null,"workflowId":null,"processTime":null,"processStatus":4,"processStatusList":null,"recruitedNeedNum":"0/10","exceedSalary":31933454.00,"offerLink":"TU100001004","phoneWork":"13077622987","hrRemake":"1111","reviewer":"张楠","auditTime":"2023-06-01","passStatus":1,"branchName":"慧辰资讯","fullName":"信息技术部/系统研发部","workPlaceName":"北京酒仙桥","recruitmentType":1,"positionName":"咨询岗-顾问","jobName":"测试招聘需求","roleType":null,"rankName":null,"titleName":null,"levelName":null,"parentSeqName":null,"seqName":null}],"code":200,"msg":"查询成功"}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_17' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_17_执行offer定时任务</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_17' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_17'>通过</button>
+    <div id='div_pt1_17' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_17' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_17'>通过</button>
+    <div id='div_pt1_17' class="collapse in" align="left">
+    <pre>
+    
+pt1_17: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8808/xxl-job-admin/jobinfo/trigger?id=120056&amp;executorParam=111&amp;addressList=1；请求方式:post
+ 11 case_016
+  22['$..rows[0].workflowId']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] eb3039fe-08d0-11ee-ab5f-005056bae653
+一来字典depend_dict {'workflowId': 'eb3039fe-08d0-11ee-ab5f-005056bae653'}
+最终入参：{}
+headers最终入参：{}
+
+反参：&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  	
+	&lt;link rel="icon" href="/xxl-job-admin/static/favicon.ico" /&gt;
+
+	&lt;meta charset="utf-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;!-- Tell the browser to be responsive to screen width --&gt;
+    &lt;meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"&gt;
+    &lt;!-- Bootstrap --&gt;
+    &lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/bower_components/bootstrap/css/bootstrap.min.css"&gt;
+    &lt;!-- Font Awesome --&gt;
+    &lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/bower_components/font-awesome/css/font-awesome.min.css"&gt;
+    &lt;!-- Ionicons --&gt;
+    &lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/bower_components/Ionicons/css/ionicons.min.css"&gt;
+    &lt;!-- Theme style --&gt;
+    &lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/dist/css/AdminLTE.min.css"&gt;
+    &lt;!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. --&gt;
+    &lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/dist/css/skins/_all-skins.min.css"&gt;
+      
+	&lt;!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --&gt;
+    &lt;!-- WARNING: Respond.js doesn't work if you view the page via file:// --&gt;
+    &lt;!--[if lt IE 9]&gt;
+    &lt;script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"&gt;&lt;/script&gt;
+    &lt;![endif]--&gt;
+
+	&lt;!-- pace --&gt;
+	&lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/bower_components/PACE/themes/blue/pace-theme-flash.css"&gt;
+
+
+    &lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/plugins/iCheck/square/blue.css"&gt;
+	&lt;title&gt;任务调度中心&lt;/title&gt;
+&lt;/head&gt;
+&lt;body class="hold-transition login-page"&gt;
+	&lt;div class="login-box"&gt;
+		&lt;div class="login-logo"&gt;
+			&lt;a&gt;&lt;b&gt;XXL&lt;/b&gt;JOB&lt;/a&gt;
+		&lt;/div&gt;
+		&lt;form id="loginForm" method="post" &gt;
+			&lt;div class="login-box-body"&gt;
+				&lt;p class="login-box-msg"&gt;任务调度中心&lt;/p&gt;
+				&lt;div class="form-group has-feedback"&gt;
+	            	&lt;input type="text" name="userName" class="form-control" placeholder="请输入登录账号"  maxlength="18" &gt;
+	            	&lt;span class="glyphicon glyphicon-envelope form-control-feedback"&gt;&lt;/span&gt;
+				&lt;/div&gt;
+	          	&lt;div class="form-group has-feedback"&gt;
+	            	&lt;input type="password" name="password" class="form-control" placeholder="请输入登录密码"  maxlength="18" &gt;
+	            	&lt;span class="glyphicon glyphicon-lock form-control-feedback"&gt;&lt;/span&gt;
+	          	&lt;/div&gt;
+				&lt;div class="row"&gt;
+					&lt;div class="col-xs-8"&gt;
+		              	&lt;div class="checkbox icheck"&gt;
+		                	&lt;label&gt;
+		                  		&lt;input type="checkbox" name="ifRemember" &gt; &amp;nbsp; 记住密码
+		                	&lt;/label&gt;
+						&lt;/div&gt;
+		            &lt;/div&gt;&lt;!-- /.col --&gt;
+		            &lt;div class="col-xs-4"&gt;
+						&lt;button type="submit" class="btn btn-primary btn-block btn-flat"&gt;登录&lt;/button&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/form&gt;
+	&lt;/div&gt;
+	&lt;!-- jQuery --&gt;
+	&lt;script src="/xxl-job-admin/static/adminlte/bower_components/jquery/jquery.min.js"&gt;&lt;/script&gt;
+	&lt;!-- Bootstrap --&gt;
+	&lt;script src="/xxl-job-admin/static/adminlte/bower_components/bootstrap/js/bootstrap.min.js"&gt;&lt;/script&gt;
+	&lt;!-- FastClick --&gt;
+	&lt;script src="/xxl-job-admin/static/adminlte/bower_components/fastclick/fastclick.js"&gt;&lt;/script&gt;
+	&lt;!-- AdminLTE App --&gt;
+	&lt;script src="/xxl-job-admin/static/adminlte/dist/js/adminlte.min.js"&gt;&lt;/script&gt;
+	&lt;!-- jquery.slimscroll --&gt;
+	&lt;script src="/xxl-job-admin/static/adminlte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"&gt;&lt;/script&gt;
+
+    &lt;!-- pace --&gt;
+    &lt;script src="/xxl-job-admin/static/adminlte/bower_components/PACE/pace.min.js"&gt;&lt;/script&gt;
+	&lt;script src="/xxl-job-admin/static/plugins/jquery/jquery.cookie.js"&gt;&lt;/script&gt;
+	&lt;script src="/xxl-job-admin/static/plugins/jquery/jquery.validate.min.js"&gt;&lt;/script&gt;
+
+	&lt;script src="/xxl-job-admin/static/plugins/layer/layer.js"&gt;&lt;/script&gt;
+
+    &lt;script src="/xxl-job-admin/static/js/common.1.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+		var base_url = '/xxl-job-admin';
+        var I18n = {"dataTable_sSortAscending":": 以升序排列此列","jobconf_route_round":"轮询","system_update_fail":"更新失败","jobconf_block_SERIAL_EXECUTION":"单机串行","jobconf_route_lfu":"最不经常使用","dataTable_sLast":"末页","jobinfo_shard_index":"分片序号","jobinfo_field_executorparam":"任务参数","user_add":"新增用户","jobinfo_field_gluetype":"运行模式","job_dashboard_job_num":"任务数量","system_api_error":"接口异常","jobconf_route_last":"最后一个","jobinfo_opt_log":"查询日志","jobinfo_field_id":"任务ID","jobinfo_conf_base":"基础配置","jobinfo_field_executorRouteStrategy":"路由策略","jobinfo_job":"任务","daterangepicker_ranges_last_month":"上个月","jobconf_trigger_exe_regaddress":"执行器-地址列表","system_not_found":"不存在","user_password_update_placeholder":"请输入新密码，为空则不更新密码","jobinfo_shard_total":"分片总数","jobgroup_empty":"不存在有效执行器,请联系管理员","system_update_suc":"更新成功","login_password_lt_4":"登录密码不应低于4位","jobgroup_field_appname_limit":"限制以小写字母开头，由小写字母、数字和中划线组成","daterangepicker_ranges_this_month":"本月","dataTable_sSearch":"搜索","job_dashboard_trigger_num_tip":"调度中心触发的调度次数","user_role":"角色","user_role_admin":"管理员","joblog_handleCode_500":"失败","daterangepicker_custom_starttime":"起始时间","joblog_status_suc":"成功","joblog_handleCode_502":"失败(超时)","jobgroup_field_order_digits":"请输入整数","jobinfo_name":"任务管理","jobinfo_field_alarmemail":"报警邮件","joblog_rolling_log_refresh":"刷新","daterangepicker_custom_endtime":"结束时间","logout_btn":"注销","schedule_type_fix_delay":"固定延迟","jobconf_trigger_type_cron":"Cron触发","change_pwd_field_newpwd":"新密码","jobinfo_field_executorFailRetryCount_placeholder":"失败重试次数，大于零时生效","daterangepicker_custom_monthnames":"一月,二月,三月,四月,五月,六月,七月,八月,九月,十月,十一月,十二月","system_welcome":"欢迎","joblog_clean_log":"日志清理","user_permission":"权限","dataTable_sLoadingRecords":"载入中...","system_opt_edit":"编辑","admin_name":"任务调度中心","job_dashboard_report_loaddata_fail":"调度报表数据加载异常","user_role_normal":"普通用户","login_param_unvalid":"账号或密码错误","jobconf_trigger_type_retry":"失败重试触发","schedule_type_none":"无","login_password_empty":"请输入登录密码","jobconf_beat":"心跳检测","joblog_clean_type_2":"清理三个月之前日志数据","job_dashboard_date_report":"日期分布图","joblog_clean_type_1":"清理一个月之前日志数据","jobgroup_field_appname_length":"AppName长度限制为4~64","joblog_kill_log":"终止任务","user_update_loginuser_limit":"禁止操作当前登录账号","joblog_clean_type_6":"清理一万条以前日志数据","joblog_clean_type_5":"清理一千条以前日志数据","joblog_clean_type_4":"清理一年之前日志数据","joblog_clean_type_3":"清理六个月之前日志数据","jobgroup_field_title_length":"名称长度限制为4~12","jobconf_route_failover":"故障转移","joblog_status":"状态","system_search":"搜索","dataTable_sFirst":"首页","jobgroup_del_limit_1":"拒绝删除, 系统至少保留一个执行器","jobconf_trigger_run":"触发调度","jobinfo_field_update":"更新任务","jobgroup_del_limit_0":"拒绝删除，该执行器使用中","admin_version":"2.3.0","jobconf_route_consistenthash":"一致性HASH","system_ok":"确定","jobconf_trigger_admin_adress":"调度机器","user_username_valid":"限制以小写字母开头，由小写字母、数字组成","system_add_suc":"新增成功","login_username_placeholder":"请输入登录账号","jobinfo_opt_next_time":"下次执行时间","jobconf_trigger_address_empty":"调度失败：执行器地址为空","jobinfo_conf_job":"任务配置","jobconf_monitor_detail":"监控告警明细","jobinfo_field_childJobId":"子任务ID","jobconf_route_lru":"最近最久未使用","jobinfo_field_executorTimeout_placeholder":"任务超时时间，单位秒，大于零时生效","joblog_rolling_log":"执行日志","jobconf_route_busyover":"忙碌转移","system_please_choose":"请选择","job_help_document":"官方文档","jobconf_route_shard":"分片广播","joblog_clean":"清理","jobinfo_glue_jobid_unvalid":"任务ID非法","jobconf_route_first":"第一个","change_pwd_suc_to_logout":"修改密码成功，即将注销登陆","jobinfo_field_jobgroup":"执行器","system_lengh_limit":"长度限制","dataTable_sSortDescending":": 以降序排列此列","joblog_logid_unvalid":"日志ID非法","change_pwd":"修改密码","logout_confirm":"确认注销登录?","dataTable_sInfoFiltered":"(由 _MAX_ 项结果过滤)","daterangepicker_ranges_recent_week":"最近一周","user_username_repeat":"账号重复","daterangepicker_ranges_recent_hour":"最近一小时","jobgroup_field_registryList_unvalid":"机器地址格式非法","joblog_field_triggerTime":"调度时间","jobconf_block_COVER_EARLY":"覆盖之前调度","system_opt":"操作","joblog_field_handleCode":"执行结果","jobinfo_opt_run_tips":"请输入本次执行的机器地址，为空则从执行器获取","joblog_status_running":"进行中","user_password":"密码","job_dashboard_jobgroup_num":"执行器数量","jobconf_trigger_type_manual":"手动触发","login_btn":"登录","jobinfo_field_author":"负责人","joblog_field_executorAddress":"执行器地址","joblog_handleCode_200":"成功","dataTable_sPrevious":"上页","system_permission_limit":"权限拦截","misfire_strategy_do_nothing":"忽略","joblog_kill_log_byman":"人为操作，主动终止","job_dashboard_name":"运行报表","dataTable_sProcessing":"处理中...","schedule_type_cron":"CRON","jobconf_trigger_type":"任务触发类型","system_cancel":"取消","jobinfo_field_executorFailRetryCount":"失败重试次数","daterangepicker_ranges_recent_month":"最近一月","dataTable_sInfoEmpty":"无记录","login_success":"登录成功","system_digits":"整数","job_help":"使用教程","daterangepicker_custom_name":"自定义","system_tips":"系统提示","jobinfo_field_jobdesc":"任务描述","jobconf_monitor_alarm_title":"告警类型","system_opt_del":"删除","system_nav":"导航","jobgroup_field_addressType_limit":"手动录入注册方式，机器地址不可为空","job_dashboard_jobgroup_num_tip":"调度中心在线的执行器机器数量","jobconf_trigger_type_api":"API触发","jobgroup_field_title":"名称","system_fail":"失败","jobgroup_del":"删除执行器","dataTable_sEmptyTable":"表中数据为空","joblog_clean_type_unvalid":"清理类型参数异常","jobconf_monitor":"任务调度中心监控报警","system_opt_fail":"操作失败","job_dashboard_report":"调度报表","jobconf_trigger_child_run":"触发子任务","jobinfo_glue_rollback":"版本回溯","joblog_status_fail":"失败","jobgroup_field_orderrange":"取值范围为1~1000","jobinfo_conf_advanced":"高级配置","system_close":"关闭","joblog_clean_type_9":"清理所有日志数据","joblog_clean_type_8":"清理十万条以前日志数据","system_show":"查看","joblog_clean_type_7":"清理三万条以前日志数据","jobgroup_edit":"编辑执行器","jobinfo_opt_stop":"停止","jobinfo_script_location":"脚本位置","jobgroup_field_registryList_placeholder":"请输入执行器地址列表，多地址逗号分隔","jobinfo_field_childJobId_placeholder":"请输入子任务的任务ID,如存在多个则逗号分隔","joblog_clean_type":"清理方式","joblog_field_triggerMsg":"调度备注","user_update":"更新用户","login_remember_me":"记住密码","system_opt_suc":"操作成功","jobgroup_name":"执行器管理","daterangepicker_custom_daysofweek":"日,一,二,三,四,五,六","jobinfo_glue_remark":"源码备注","logout_success":"注销成功","jobinfo_field_timeout":"任务超时时间","user_manage":"用户管理","jobgroup_list":"执行器列表","login_password_placeholder":"请输入登录密码","jobconf_idleBeat":"空闲检测","system_empty":"无","joblog_rolling_log_failoften":"终止请求Rolling日志,请求失败次数超上限,可刷新页面重新加载日志","jobconf_callback_child_msg1":"{0}/{1} [任务ID={2}], 触发{3}, 触发备注: {4} &lt;br&gt;","joblog_name":"调度日志","dataTable_sNext":"下页","admin_name_full":"分布式任务调度平台XXL-JOB","daterangepicker_ranges_yesterday":"昨日","logout_fail":"注销失败","system_success":"成功","login_param_empty":"账号或密码为空","jobgroup_add":"新增执行器","job_dashboard_trigger_num":"调度次数","jobinfo_opt_registryinfo":"注册节点","jobconf_monitor_alarm_content":"告警内容","joblog_status_all":"全部","jobconf_route_random":"随机","system_unvalid":"非法","jobinfo_opt_start":"启动","login_username_lt_4":"登录账号不应低于4位","joblog_kill_log_limit":"调度失败，无法终止日志","jobconf_callback_child_msg2":"{0}/{1} [任务ID={2}], 触发失败, 触发备注: 任务ID格式错误 &lt;br&gt;","dataTable_sZeroRecords":"没有匹配结果","jobconf_trigger_type_parent":"父任务触发","jobconf_block_DISCARD_LATER":"丢弃后续调度","joblog_field_handleTime":"执行时间","dataTable_sLengthMenu":"每页 _MENU_ 条记录","jobgroup_field_registryList":"机器地址","system_all":"全部","jobinfo_field_alarmemail_placeholder":"请输入报警邮件，多个邮件地址则逗号分隔","jobgroup_field_addressType":"注册方式","joblog_lost_fail":"任务结果丢失，标记失败","job_dashboard_job_num_tip":"调度中心运行的任务数量","system_opt_copy":"复制","schedule_type_fix_rate":"固定速度","jobconf_trigger_exe_regtype":"执行器-注册方式","misfire_strategy_fire_once_now":"立即执行一次","jobgroup_field_addressType_1":"手动录入","jobgroup_field_addressType_0":"自动注册","jobconf_monitor_alarm_type":"调度失败","jobinfo_conf_schedule":"调度配置","joblog_rolling_log_triggerfail":"任务发起调度失败，无法查看执行日志","dataTable_sInfo":"第 _PAGE_ 页 ( 总共 _PAGES_ 页，_TOTAL_ 条记录 )","schedule_type":"调度类型","jobinfo_opt_run":"执行一次","user_username":"账号","jobinfo_field_executorBlockStrategy":"阻塞处理策略","login_username_empty":"请输入登录账号","jobconf_trigger_type_misfire":"调度过期补偿","joblog_field_handleMsg":"执行备注","jobinfo_field_add":"新增","daterangepicker_ranges_today":"今日","system_save":"保存","admin_i18n":"","job_dashboard_rate_report":"成功比例图","joblog_field_triggerCode":"调度结果","system_status":"状态","system_please_input":"请输入","misfire_strategy":"调度过期策略","jobinfo_glue_gluetype_unvalid":"该任务非GLUE模式","system_add_fail":"新增失败","schedule_type_none_limit_start":"当前调度类型禁止启动","login_fail":"登录失败","jobinfo_glue_remark_limit":"源码备注长度限制为4~100"};
+	&lt;/script&gt;
+
+&lt;script src="/xxl-job-admin/static/adminlte/plugins/iCheck/icheck.min.js"&gt;&lt;/script&gt;
+&lt;script src="/xxl-job-admin/static/js/login.1.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_18' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_18_发送offer</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_18' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_18'>通过</button>
+    <div id='div_pt1_18' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_18' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_18'>通过</button>
+    <div id='div_pt1_18' class="collapse in" align="left">
+    <pre>
+    
+pt1_18: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/hr/recruitOffer/sendOffer?type=1&amp;id=RO100000711；请求方式:get
+最终入参：None
+ 11 case_007
+  22['$..access_token']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ
+一来字典depend_dict {'access_token': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+headers最终入参：{'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+反参：{"msg":"操作成功","code":200}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_19' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_19_接受offer</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_19' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_19'>通过</button>
+    <div id='div_pt1_19' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_19' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_19'>通过</button>
+    <div id='div_pt1_19' class="collapse in" align="left">
+    <pre>
+    
+pt1_19: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/hcr_talentpool/talentAfterOffer/acceptOrRefuseOffer；请求方式:post
+ 11 case_010
+  22['$.rows[0].link']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] TU100001031
+一来字典depend_dict {'link': 'TU100001031'}
+k数据 talentId
+isjavacode []
+最终入参：{"talentId": "TU100001031", "acceptStatus": 1}
+headers最终入参：{'Content-Type': 'application/json'}
+
+反参：{"msg":"操作成功","code":200,"data":true}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_20' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_20_登记信息</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_20' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_20'>通过</button>
+    <div id='div_pt1_20' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_20' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_20'>通过</button>
+    <div id='div_pt1_20' class="collapse in" align="left">
+    <pre>
+    
+pt1_20: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/hcr_talentpool/talentUser/hcrOutsideTalentWhite；请求方式:post
+ 11 case_003
+  22['$..rows[0].id']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] RHC100000871
+ 11 case_010
+  22['$.rows[0].link']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] TU100001031
+一来字典depend_dict {'id': 'RHC100000871', 'link': 'TU100001031'}
+k数据 id
+isjavacode []
+k数据 titleEntry
+isjavacode []
+最终入参：{"talentUser": {"id": "TU100001031", "internalRecommender": "\u5f20\u6960", "realName": "\u6d4b\u8bd5", "oldName": null, "sex": 1, "phoneWork": "13077622987", "birthday": "2001-02-01", "email": "22221@qq.com", "cardType": null, "idCard": "13111", "nation": 0, "nativePlace": null, "height": null, "weight": null, "bloodType": 0, "marriage": 0, "children": 0, "nowAddress": "\u5b58\u50a8", "nowAddressDetail": "\u6d4b\u8bd5", "nowZipCode": "11", "accountCharacter": 0, "registeredResidence": "11", "zipCode": "111", "politicCountenance": 0, "firstWorkDate": "2021-02-03", "education": 3, "academicDegree": 0, "school": "\u6d4b\u8bd5", "major": "\u6d4b\u8bd5", "computerLevel": null, "englishLevel": "11", "professionalCertification": null, "speciality": null, "wechat": "11", "urgentUser": "11", "urgentTel": "11", "urgentUserRelationship": "111", "source": 0, "interviewDate": null, "titleEntry": "RHC100000871", "deptEntry": null, "dateEntry": null, "expectedSalary": null, "situationType": 0, "acquaintanceType": 0, "acquaintanceName": null, "acquaintanceTitle": null, "beforeLeaderName": null, "leaderTel": null, "bankName": "11", "bankAccountName": "11", "bankCard": "11", "spellName": "1111", "registeredResidenceDetail": "111", "archiveAddress": "11", "homeTel": "111", "omsMemberId": null, "createTime": "2023-05-30", "createType": 1, "createBy": "\u5f20\u6960", "openStatus": 1, "backInvestigateType": null, "age": 22}}
+headers最终入参：{'Content-Type': 'application/json'}
+
+反参：{"msg":"操作成功","code":200,"data":true}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_21' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_21_接受offer定时任务</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_21' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_21'>通过</button>
+    <div id='div_pt1_21' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_21' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_21'>通过</button>
+    <div id='div_pt1_21' class="collapse in" align="left">
+    <pre>
+    
+pt1_21: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8808/xxl-job-admin/jobinfo/trigger?id=90043&amp;executorParam=11&amp;addressList=111；请求方式:post
+ 11 case_010
+  22['$.rows[0].link']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] TU100001031
+一来字典depend_dict {'link': 'TU100001031'}
+最终入参：{}
+headers最终入参：{}
+
+反参：&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  	
+	&lt;link rel="icon" href="/xxl-job-admin/static/favicon.ico" /&gt;
+
+	&lt;meta charset="utf-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;!-- Tell the browser to be responsive to screen width --&gt;
+    &lt;meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"&gt;
+    &lt;!-- Bootstrap --&gt;
+    &lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/bower_components/bootstrap/css/bootstrap.min.css"&gt;
+    &lt;!-- Font Awesome --&gt;
+    &lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/bower_components/font-awesome/css/font-awesome.min.css"&gt;
+    &lt;!-- Ionicons --&gt;
+    &lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/bower_components/Ionicons/css/ionicons.min.css"&gt;
+    &lt;!-- Theme style --&gt;
+    &lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/dist/css/AdminLTE.min.css"&gt;
+    &lt;!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. --&gt;
+    &lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/dist/css/skins/_all-skins.min.css"&gt;
+      
+	&lt;!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --&gt;
+    &lt;!-- WARNING: Respond.js doesn't work if you view the page via file:// --&gt;
+    &lt;!--[if lt IE 9]&gt;
+    &lt;script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"&gt;&lt;/script&gt;
+    &lt;![endif]--&gt;
+
+	&lt;!-- pace --&gt;
+	&lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/bower_components/PACE/themes/blue/pace-theme-flash.css"&gt;
+
+
+    &lt;link rel="stylesheet" href="/xxl-job-admin/static/adminlte/plugins/iCheck/square/blue.css"&gt;
+	&lt;title&gt;任务调度中心&lt;/title&gt;
+&lt;/head&gt;
+&lt;body class="hold-transition login-page"&gt;
+	&lt;div class="login-box"&gt;
+		&lt;div class="login-logo"&gt;
+			&lt;a&gt;&lt;b&gt;XXL&lt;/b&gt;JOB&lt;/a&gt;
+		&lt;/div&gt;
+		&lt;form id="loginForm" method="post" &gt;
+			&lt;div class="login-box-body"&gt;
+				&lt;p class="login-box-msg"&gt;任务调度中心&lt;/p&gt;
+				&lt;div class="form-group has-feedback"&gt;
+	            	&lt;input type="text" name="userName" class="form-control" placeholder="请输入登录账号"  maxlength="18" &gt;
+	            	&lt;span class="glyphicon glyphicon-envelope form-control-feedback"&gt;&lt;/span&gt;
+				&lt;/div&gt;
+	          	&lt;div class="form-group has-feedback"&gt;
+	            	&lt;input type="password" name="password" class="form-control" placeholder="请输入登录密码"  maxlength="18" &gt;
+	            	&lt;span class="glyphicon glyphicon-lock form-control-feedback"&gt;&lt;/span&gt;
+	          	&lt;/div&gt;
+				&lt;div class="row"&gt;
+					&lt;div class="col-xs-8"&gt;
+		              	&lt;div class="checkbox icheck"&gt;
+		                	&lt;label&gt;
+		                  		&lt;input type="checkbox" name="ifRemember" &gt; &amp;nbsp; 记住密码
+		                	&lt;/label&gt;
+						&lt;/div&gt;
+		            &lt;/div&gt;&lt;!-- /.col --&gt;
+		            &lt;div class="col-xs-4"&gt;
+						&lt;button type="submit" class="btn btn-primary btn-block btn-flat"&gt;登录&lt;/button&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/form&gt;
+	&lt;/div&gt;
+	&lt;!-- jQuery --&gt;
+	&lt;script src="/xxl-job-admin/static/adminlte/bower_components/jquery/jquery.min.js"&gt;&lt;/script&gt;
+	&lt;!-- Bootstrap --&gt;
+	&lt;script src="/xxl-job-admin/static/adminlte/bower_components/bootstrap/js/bootstrap.min.js"&gt;&lt;/script&gt;
+	&lt;!-- FastClick --&gt;
+	&lt;script src="/xxl-job-admin/static/adminlte/bower_components/fastclick/fastclick.js"&gt;&lt;/script&gt;
+	&lt;!-- AdminLTE App --&gt;
+	&lt;script src="/xxl-job-admin/static/adminlte/dist/js/adminlte.min.js"&gt;&lt;/script&gt;
+	&lt;!-- jquery.slimscroll --&gt;
+	&lt;script src="/xxl-job-admin/static/adminlte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"&gt;&lt;/script&gt;
+
+    &lt;!-- pace --&gt;
+    &lt;script src="/xxl-job-admin/static/adminlte/bower_components/PACE/pace.min.js"&gt;&lt;/script&gt;
+	&lt;script src="/xxl-job-admin/static/plugins/jquery/jquery.cookie.js"&gt;&lt;/script&gt;
+	&lt;script src="/xxl-job-admin/static/plugins/jquery/jquery.validate.min.js"&gt;&lt;/script&gt;
+
+	&lt;script src="/xxl-job-admin/static/plugins/layer/layer.js"&gt;&lt;/script&gt;
+
+    &lt;script src="/xxl-job-admin/static/js/common.1.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+		var base_url = '/xxl-job-admin';
+        var I18n = {"dataTable_sSortAscending":": 以升序排列此列","jobconf_route_round":"轮询","system_update_fail":"更新失败","jobconf_block_SERIAL_EXECUTION":"单机串行","jobconf_route_lfu":"最不经常使用","dataTable_sLast":"末页","jobinfo_shard_index":"分片序号","jobinfo_field_executorparam":"任务参数","user_add":"新增用户","jobinfo_field_gluetype":"运行模式","job_dashboard_job_num":"任务数量","system_api_error":"接口异常","jobconf_route_last":"最后一个","jobinfo_opt_log":"查询日志","jobinfo_field_id":"任务ID","jobinfo_conf_base":"基础配置","jobinfo_field_executorRouteStrategy":"路由策略","jobinfo_job":"任务","daterangepicker_ranges_last_month":"上个月","jobconf_trigger_exe_regaddress":"执行器-地址列表","system_not_found":"不存在","user_password_update_placeholder":"请输入新密码，为空则不更新密码","jobinfo_shard_total":"分片总数","jobgroup_empty":"不存在有效执行器,请联系管理员","system_update_suc":"更新成功","login_password_lt_4":"登录密码不应低于4位","jobgroup_field_appname_limit":"限制以小写字母开头，由小写字母、数字和中划线组成","daterangepicker_ranges_this_month":"本月","dataTable_sSearch":"搜索","job_dashboard_trigger_num_tip":"调度中心触发的调度次数","user_role":"角色","user_role_admin":"管理员","joblog_handleCode_500":"失败","daterangepicker_custom_starttime":"起始时间","joblog_status_suc":"成功","joblog_handleCode_502":"失败(超时)","jobgroup_field_order_digits":"请输入整数","jobinfo_name":"任务管理","jobinfo_field_alarmemail":"报警邮件","joblog_rolling_log_refresh":"刷新","daterangepicker_custom_endtime":"结束时间","logout_btn":"注销","schedule_type_fix_delay":"固定延迟","jobconf_trigger_type_cron":"Cron触发","change_pwd_field_newpwd":"新密码","jobinfo_field_executorFailRetryCount_placeholder":"失败重试次数，大于零时生效","daterangepicker_custom_monthnames":"一月,二月,三月,四月,五月,六月,七月,八月,九月,十月,十一月,十二月","system_welcome":"欢迎","joblog_clean_log":"日志清理","user_permission":"权限","dataTable_sLoadingRecords":"载入中...","system_opt_edit":"编辑","admin_name":"任务调度中心","job_dashboard_report_loaddata_fail":"调度报表数据加载异常","user_role_normal":"普通用户","login_param_unvalid":"账号或密码错误","jobconf_trigger_type_retry":"失败重试触发","schedule_type_none":"无","login_password_empty":"请输入登录密码","jobconf_beat":"心跳检测","joblog_clean_type_2":"清理三个月之前日志数据","job_dashboard_date_report":"日期分布图","joblog_clean_type_1":"清理一个月之前日志数据","jobgroup_field_appname_length":"AppName长度限制为4~64","joblog_kill_log":"终止任务","user_update_loginuser_limit":"禁止操作当前登录账号","joblog_clean_type_6":"清理一万条以前日志数据","joblog_clean_type_5":"清理一千条以前日志数据","joblog_clean_type_4":"清理一年之前日志数据","joblog_clean_type_3":"清理六个月之前日志数据","jobgroup_field_title_length":"名称长度限制为4~12","jobconf_route_failover":"故障转移","joblog_status":"状态","system_search":"搜索","dataTable_sFirst":"首页","jobgroup_del_limit_1":"拒绝删除, 系统至少保留一个执行器","jobconf_trigger_run":"触发调度","jobinfo_field_update":"更新任务","jobgroup_del_limit_0":"拒绝删除，该执行器使用中","admin_version":"2.3.0","jobconf_route_consistenthash":"一致性HASH","system_ok":"确定","jobconf_trigger_admin_adress":"调度机器","user_username_valid":"限制以小写字母开头，由小写字母、数字组成","system_add_suc":"新增成功","login_username_placeholder":"请输入登录账号","jobinfo_opt_next_time":"下次执行时间","jobconf_trigger_address_empty":"调度失败：执行器地址为空","jobinfo_conf_job":"任务配置","jobconf_monitor_detail":"监控告警明细","jobinfo_field_childJobId":"子任务ID","jobconf_route_lru":"最近最久未使用","jobinfo_field_executorTimeout_placeholder":"任务超时时间，单位秒，大于零时生效","joblog_rolling_log":"执行日志","jobconf_route_busyover":"忙碌转移","system_please_choose":"请选择","job_help_document":"官方文档","jobconf_route_shard":"分片广播","joblog_clean":"清理","jobinfo_glue_jobid_unvalid":"任务ID非法","jobconf_route_first":"第一个","change_pwd_suc_to_logout":"修改密码成功，即将注销登陆","jobinfo_field_jobgroup":"执行器","system_lengh_limit":"长度限制","dataTable_sSortDescending":": 以降序排列此列","joblog_logid_unvalid":"日志ID非法","change_pwd":"修改密码","logout_confirm":"确认注销登录?","dataTable_sInfoFiltered":"(由 _MAX_ 项结果过滤)","daterangepicker_ranges_recent_week":"最近一周","user_username_repeat":"账号重复","daterangepicker_ranges_recent_hour":"最近一小时","jobgroup_field_registryList_unvalid":"机器地址格式非法","joblog_field_triggerTime":"调度时间","jobconf_block_COVER_EARLY":"覆盖之前调度","system_opt":"操作","joblog_field_handleCode":"执行结果","jobinfo_opt_run_tips":"请输入本次执行的机器地址，为空则从执行器获取","joblog_status_running":"进行中","user_password":"密码","job_dashboard_jobgroup_num":"执行器数量","jobconf_trigger_type_manual":"手动触发","login_btn":"登录","jobinfo_field_author":"负责人","joblog_field_executorAddress":"执行器地址","joblog_handleCode_200":"成功","dataTable_sPrevious":"上页","system_permission_limit":"权限拦截","misfire_strategy_do_nothing":"忽略","joblog_kill_log_byman":"人为操作，主动终止","job_dashboard_name":"运行报表","dataTable_sProcessing":"处理中...","schedule_type_cron":"CRON","jobconf_trigger_type":"任务触发类型","system_cancel":"取消","jobinfo_field_executorFailRetryCount":"失败重试次数","daterangepicker_ranges_recent_month":"最近一月","dataTable_sInfoEmpty":"无记录","login_success":"登录成功","system_digits":"整数","job_help":"使用教程","daterangepicker_custom_name":"自定义","system_tips":"系统提示","jobinfo_field_jobdesc":"任务描述","jobconf_monitor_alarm_title":"告警类型","system_opt_del":"删除","system_nav":"导航","jobgroup_field_addressType_limit":"手动录入注册方式，机器地址不可为空","job_dashboard_jobgroup_num_tip":"调度中心在线的执行器机器数量","jobconf_trigger_type_api":"API触发","jobgroup_field_title":"名称","system_fail":"失败","jobgroup_del":"删除执行器","dataTable_sEmptyTable":"表中数据为空","joblog_clean_type_unvalid":"清理类型参数异常","jobconf_monitor":"任务调度中心监控报警","system_opt_fail":"操作失败","job_dashboard_report":"调度报表","jobconf_trigger_child_run":"触发子任务","jobinfo_glue_rollback":"版本回溯","joblog_status_fail":"失败","jobgroup_field_orderrange":"取值范围为1~1000","jobinfo_conf_advanced":"高级配置","system_close":"关闭","joblog_clean_type_9":"清理所有日志数据","joblog_clean_type_8":"清理十万条以前日志数据","system_show":"查看","joblog_clean_type_7":"清理三万条以前日志数据","jobgroup_edit":"编辑执行器","jobinfo_opt_stop":"停止","jobinfo_script_location":"脚本位置","jobgroup_field_registryList_placeholder":"请输入执行器地址列表，多地址逗号分隔","jobinfo_field_childJobId_placeholder":"请输入子任务的任务ID,如存在多个则逗号分隔","joblog_clean_type":"清理方式","joblog_field_triggerMsg":"调度备注","user_update":"更新用户","login_remember_me":"记住密码","system_opt_suc":"操作成功","jobgroup_name":"执行器管理","daterangepicker_custom_daysofweek":"日,一,二,三,四,五,六","jobinfo_glue_remark":"源码备注","logout_success":"注销成功","jobinfo_field_timeout":"任务超时时间","user_manage":"用户管理","jobgroup_list":"执行器列表","login_password_placeholder":"请输入登录密码","jobconf_idleBeat":"空闲检测","system_empty":"无","joblog_rolling_log_failoften":"终止请求Rolling日志,请求失败次数超上限,可刷新页面重新加载日志","jobconf_callback_child_msg1":"{0}/{1} [任务ID={2}], 触发{3}, 触发备注: {4} &lt;br&gt;","joblog_name":"调度日志","dataTable_sNext":"下页","admin_name_full":"分布式任务调度平台XXL-JOB","daterangepicker_ranges_yesterday":"昨日","logout_fail":"注销失败","system_success":"成功","login_param_empty":"账号或密码为空","jobgroup_add":"新增执行器","job_dashboard_trigger_num":"调度次数","jobinfo_opt_registryinfo":"注册节点","jobconf_monitor_alarm_content":"告警内容","joblog_status_all":"全部","jobconf_route_random":"随机","system_unvalid":"非法","jobinfo_opt_start":"启动","login_username_lt_4":"登录账号不应低于4位","joblog_kill_log_limit":"调度失败，无法终止日志","jobconf_callback_child_msg2":"{0}/{1} [任务ID={2}], 触发失败, 触发备注: 任务ID格式错误 &lt;br&gt;","dataTable_sZeroRecords":"没有匹配结果","jobconf_trigger_type_parent":"父任务触发","jobconf_block_DISCARD_LATER":"丢弃后续调度","joblog_field_handleTime":"执行时间","dataTable_sLengthMenu":"每页 _MENU_ 条记录","jobgroup_field_registryList":"机器地址","system_all":"全部","jobinfo_field_alarmemail_placeholder":"请输入报警邮件，多个邮件地址则逗号分隔","jobgroup_field_addressType":"注册方式","joblog_lost_fail":"任务结果丢失，标记失败","job_dashboard_job_num_tip":"调度中心运行的任务数量","system_opt_copy":"复制","schedule_type_fix_rate":"固定速度","jobconf_trigger_exe_regtype":"执行器-注册方式","misfire_strategy_fire_once_now":"立即执行一次","jobgroup_field_addressType_1":"手动录入","jobgroup_field_addressType_0":"自动注册","jobconf_monitor_alarm_type":"调度失败","jobinfo_conf_schedule":"调度配置","joblog_rolling_log_triggerfail":"任务发起调度失败，无法查看执行日志","dataTable_sInfo":"第 _PAGE_ 页 ( 总共 _PAGES_ 页，_TOTAL_ 条记录 )","schedule_type":"调度类型","jobinfo_opt_run":"执行一次","user_username":"账号","jobinfo_field_executorBlockStrategy":"阻塞处理策略","login_username_empty":"请输入登录账号","jobconf_trigger_type_misfire":"调度过期补偿","joblog_field_handleMsg":"执行备注","jobinfo_field_add":"新增","daterangepicker_ranges_today":"今日","system_save":"保存","admin_i18n":"","job_dashboard_rate_report":"成功比例图","joblog_field_triggerCode":"调度结果","system_status":"状态","system_please_input":"请输入","misfire_strategy":"调度过期策略","jobinfo_glue_gluetype_unvalid":"该任务非GLUE模式","system_add_fail":"新增失败","schedule_type_none_limit_start":"当前调度类型禁止启动","login_fail":"登录失败","jobinfo_glue_remark_limit":"源码备注长度限制为4~100"};
+	&lt;/script&gt;
+
+&lt;script src="/xxl-job-admin/static/adminlte/plugins/iCheck/icheck.min.js"&gt;&lt;/script&gt;
+&lt;script src="/xxl-job-admin/static/js/login.1.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_22' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_22_招聘确认入职登记表</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_22' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_22'>通过</button>
+    <div id='div_pt1_22' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_22' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_22'>通过</button>
+    <div id='div_pt1_22' class="collapse in" align="left">
+    <pre>
+    
+pt1_22: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/hr/recruitOffer/updatePassStatus?role=1；请求方式:post
+ 11 case_014
+  22['$.rows[0].id']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] RO100000711
+一来字典depend_dict {'id': 'RO100000711'}
+k数据 id
+isjavacode []
+最终入参：{"id": "RO100000711", "hrRemake": "1111", "passStatus": 1}
+ 11 case_007
+  22['$..access_token']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ
+一来字典depend_dict {'access_token': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+headers最终入参：{'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIzMjY2IiwidXNlcl9rZXkiOiJhYzgwZmMyNS01MTAzLTRmZmUtYjJhNC1iMmY0NzVmYTFiNTIiLCJ1c2VybmFtZSI6Im5hbi56aGFuZzAxIn0.D1fyLSOGqlhkrgtY1nvqt7ioxOzKhR_to7TwjU4I9en23Hi0mXW2YQh2nitK6H5oQAbi8oh_Mq3ZAtb4gBUrkQ'}
+
+反参：{"msg":"操作成功","code":200,"data":true}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_23' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_23_员工关系专员刘佳登录</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_23' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_23'>通过</button>
+    <div id='div_pt1_23' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_23' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_23'>通过</button>
+    <div id='div_pt1_23' class="collapse in" align="left">
+    <pre>
+    
+pt1_23: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/auth/login；请求方式:post
+最终入参：{
+ "appId": "hcr_oms",
+ "username": "Avril.liu",
+ "password": "oms123"
+}
+headers最终入参：{'Content-Type': 'application/json'}
+
+反参：{"code":200,"msg":null,"data":{"access_token":"eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMDE2IiwidXNlcl9rZXkiOiI2ODJlMTc5OS00YjU5LTRjMzEtYTE2Mi1kZTkzMmRhN2IzMWIiLCJ1c2VybmFtZSI6ImF2cmlsLmxpdSJ9.eA8bDfuxWFgFRLa1gjVJDpp7-0YaEdq9ZqAq36tNcWWLn0PLVxVLuPqcoEKQnCqJXiIO24NlAhWdyB15e1141Q","expires_in":40}}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_24' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_24_员工关系确认入职登记</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_24' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_24'>通过</button>
+    <div id='div_pt1_24' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_24' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_24'>通过</button>
+    <div id='div_pt1_24' class="collapse in" align="left">
+    <pre>
+    
+pt1_24: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/hr/recruitOffer/updatePassStatus?role=2；请求方式:post
+ 11 case_014
+  22['$.rows[0].id']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] RO100000711
+一来字典depend_dict {'id': 'RO100000711'}
+k数据 id
+isjavacode []
+最终入参：{"id": "RO100000711", "hrRemake": "111", "passStatus": 1}
+ 11 case_023
+  22['$..access_token']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMDE2IiwidXNlcl9rZXkiOiI2ODJlMTc5OS00YjU5LTRjMzEtYTE2Mi1kZTkzMmRhN2IzMWIiLCJ1c2VybmFtZSI6ImF2cmlsLmxpdSJ9.eA8bDfuxWFgFRLa1gjVJDpp7-0YaEdq9ZqAq36tNcWWLn0PLVxVLuPqcoEKQnCqJXiIO24NlAhWdyB15e1141Q
+一来字典depend_dict {'access_token': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMDE2IiwidXNlcl9rZXkiOiI2ODJlMTc5OS00YjU5LTRjMzEtYTE2Mi1kZTkzMmRhN2IzMWIiLCJ1c2VybmFtZSI6ImF2cmlsLmxpdSJ9.eA8bDfuxWFgFRLa1gjVJDpp7-0YaEdq9ZqAq36tNcWWLn0PLVxVLuPqcoEKQnCqJXiIO24NlAhWdyB15e1141Q'}
+headers最终入参：{'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMDE2IiwidXNlcl9rZXkiOiI2ODJlMTc5OS00YjU5LTRjMzEtYTE2Mi1kZTkzMmRhN2IzMWIiLCJ1c2VybmFtZSI6ImF2cmlsLmxpdSJ9.eA8bDfuxWFgFRLa1gjVJDpp7-0YaEdq9ZqAq36tNcWWLn0PLVxVLuPqcoEKQnCqJXiIO24NlAhWdyB15e1141Q'}
+
+反参：{"msg":"操作成功","code":200,"data":true}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_25' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_25_确认入职</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_25' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_25'>通过</button>
+    <div id='div_pt1_25' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_25' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_25'>通过</button>
+    <div id='div_pt1_25' class="collapse in" align="left">
+    <pre>
+    
+pt1_25: ******************测试开始前准备*******************
+请求url地址：http://192.168.15.213:8200/prod-api/hr/talentUserInfo/createUserOms；请求方式:post
+ 11 case_010
+  22['$.rows[0].link']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] TU100001031
+一来字典depend_dict {'link': 'TU100001031'}
+k数据 talentId
+isjavacode []
+miao-shan@hcr.com.cn
+最终入参：{"realName": "\u82d7\u5c71", "cardType": 0, "idCard": "226561198910022472", "sex": 1, "birthday": "2001-02-01", "memberId": null, "memberType": 1, "contractBranch": "hcr_bj", "payrollCityId": "120000", "socialSecurityCityId": "140100", "workingCityId": "130100", "jobStatus": 1, "email": "miao-shan@hcr.com.cn", "phoneWork": "18073572224", "phoneMobile": "15277077457", "deptId": "3401", "dateEntry": "2023-09-29", "dateMember": "2023-10-29", "dateQuit": null, "entrust": 0, "entrustUser": null, "guideUserId": "\u6f58\u81ea\u8f89", "titleType": 12, "manageLevel": 5, "wholeAuth": null, "accountingDeptId": "3401", "contractSignType": 0, "contractStartDate": "2023-09-29", "contractEndDate": "2026-09-28", "groupId": 2, "workPlaceId": "hcr_bj_jxq", "resignationStatus": 0, "firstWorkDate": "2021-02-03", "parentJobSeqId": 3, "jobSeqId": 302, "jobTitleId": 302001, "jobRankId": 212, "jobLevelId": 20102, "inWorkHours": 1, "competitionAgreement": 0, "createBy": "\u5f20\u6960", "createTime": "2023-05-29", "updateBy": "\u5f20\u6960", "updateTime": "2023-05-29", "activateStatus": 0, "talentId": "TU100001031"}
+ 11 case_023
+  22['$..access_token']
+&lt;class 'dict'&gt;
+ depend_dict[d_k] eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMDE2IiwidXNlcl9rZXkiOiI2ODJlMTc5OS00YjU5LTRjMzEtYTE2Mi1kZTkzMmRhN2IzMWIiLCJ1c2VybmFtZSI6ImF2cmlsLmxpdSJ9.eA8bDfuxWFgFRLa1gjVJDpp7-0YaEdq9ZqAq36tNcWWLn0PLVxVLuPqcoEKQnCqJXiIO24NlAhWdyB15e1141Q
+一来字典depend_dict {'access_token': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMDE2IiwidXNlcl9rZXkiOiI2ODJlMTc5OS00YjU5LTRjMzEtYTE2Mi1kZTkzMmRhN2IzMWIiLCJ1c2VybmFtZSI6ImF2cmlsLmxpdSJ9.eA8bDfuxWFgFRLa1gjVJDpp7-0YaEdq9ZqAq36tNcWWLn0PLVxVLuPqcoEKQnCqJXiIO24NlAhWdyB15e1141Q'}
+headers最终入参：{'Content-Type': 'application/json', 'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJtZW1iZXJfaWQiOiIxMDE2IiwidXNlcl9rZXkiOiI2ODJlMTc5OS00YjU5LTRjMzEtYTE2Mi1kZTkzMmRhN2IzMWIiLCJ1c2VybmFtZSI6ImF2cmlsLmxpdSJ9.eA8bDfuxWFgFRLa1gjVJDpp7-0YaEdq9ZqAq36tNcWWLn0PLVxVLuPqcoEKQnCqJXiIO24NlAhWdyB15e1141Q'}
+
+反参：{"msg":"创建新员工成功!","code":200,"data":"3718"}
+******************{interface}测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='total_row' class="text-center active">
+    <td>总计</td>
+    <td>25</td>
+    <td>25</td>
+    <td>0</td>
+    <td>0</td>
+    <td>通过率：100.00%</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+    <div style=" position:fixed;right:50px; bottom:30px; width:20px; height:20px;cursor:pointer">
+    <a href="#"><span class="glyphicon glyphicon-eject" style = "font-size:30px;" aria-hidden="true">
+    </span></a></div>
+    
+</body>
+</html>
