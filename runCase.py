@@ -6,9 +6,9 @@ from common.emailConfig import emailConfig
 #import HTMLTestRunner
 from library.HTMLTestRunnerNew import HTMLTestRunner
 
-# libs = {"flask","ddt","pymysql","requests","openpyxl",'retrying','xlrd','PyCryptodome','paramunittest','jsonPath','jsonpath_rw','jsonpath_ng','xpinyin'} # 将需要安装的库名称放到列表中
-# for lib in libs:
-#         os.system("pip3 install  "+lib+" -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com")
+libs = {"flask","ddt","pymysql","requests","openpyxl",'retrying','xlrd','PyCryptodome','paramunittest','jsonPath','jsonpath_rw','jsonpath_ng','xpinyin'} # 将需要安装的库名称放到列表中
+for lib in libs:
+        os.system("pip3 install  "+lib+" -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com")
 
 # 用例路径
 case_path = os.path.join(os.getcwd(), 'case')
