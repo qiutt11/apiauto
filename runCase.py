@@ -1,3 +1,4 @@
+#-*- encoding:utf-8 -*-
 import unittest
 import os,re,json
 import time

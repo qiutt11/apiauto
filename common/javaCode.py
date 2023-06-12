@@ -1,3 +1,4 @@
+#-*- encoding:utf-8 -*-
 import json
 from jsonpath_ng import parse
 

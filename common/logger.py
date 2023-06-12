@@ -1,3 +1,4 @@
+#-*- encoding:utf-8 -*-
 import logging
 from logging.handlers import TimedRotatingFileHandler
 import os
