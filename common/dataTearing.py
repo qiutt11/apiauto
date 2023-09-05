@@ -1,4 +1,4 @@
-#-*- encoding:utf-8 -*-
+
 import json,re
 import jsonpath
 from  common.logger import logger
